@@ -2,521 +2,1814 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>포트폴리오 · WEB/APP 기획 및 사업 관리 PM 박세훈</title>
-<meta name="description" content="웹·앱과 이커머스에서 사업 관리와 서비스 운영을 맡아 온 경험을 정리한 박세훈의 WEB/APP 기획 및 사업 관리 PM 포트폴리오입니다.">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<meta name="description" content="공공·문화 포털과 면세 이커머스에서 기획 PL로 사업을 맡아 온 박세훈의 포트폴리오. 요구 정의부터 검수·정산까지.">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-body{margin:0;background:#FBFAF8;color:#1A1A1A;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
-a{color:#A6462B;text-decoration:none}
-a:hover{color:#1A1A1A}
-.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:52px}
-@media (max-width:1080px){.tool-grid{grid-template-columns:minmax(0,1fr)}}
-@media print{
-  @page{size:A4 portrait;margin:12mm 12mm 14mm}
-  html{font-size:10pt}
-  body{background:#fff}
-  /* 웹 전용 요소 */
-  [data-prog]{display:none!important}
-  aside{display:none!important}
-  /* 진입 애니메이션 해제 — 없으면 본문이 통째로 안 찍힌다 */
-  [data-rv]{opacity:1!important;transform:none!important}
-  /* 지면 폭(794px)이 모바일 질의에 걸려 1열로 떨어지는 것을 되돌린다 */
-  .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:8mm}
-  .tool-grid li{grid-template-columns:34mm minmax(0,1fr) 8mm!important;gap:3mm!important}
-  /* 셸: 사이드바 2단 → 1단 */
-  div[style*="grid-template-columns:300px"]{display:block!important;
-    grid-template-columns:minmax(0,1fr)!important;max-width:none!important}
-  main{padding:0!important;width:auto!important;grid-column:1/-1!important}
-  header{padding:0 0 6mm!important}
-  section{padding:8mm 0 0!important}
-  h1{font-size:19pt!important;line-height:1.45!important;margin-top:4mm!important}
-  h2{font-size:17pt!important}
-  h3{font-size:13pt!important}
-  p,li,dd,dt,span{orphans:3;widows:3}
-  /* 이미지·카드 */
-  figure{box-shadow:none!important;transform:none!important;max-height:none!important;break-inside:avoid}
-  figure img{max-height:120mm!important;object-fit:contain!important}
-  div[style*="aspect-ratio:4/3"]{box-shadow:none!important;transform:none!important;break-inside:avoid}
-  article{break-inside:avoid}
-  h2,h3{break-after:avoid}
-  a{color:inherit!important}
+/* ═══════════════════════════════════════════════════════════
+   TDS Mobile 토큰 기반 · 토스페이먼츠 문서 레이아웃 아키타입 적용
+   컬러  : tds-colors.css (@toss/tds-colors 0.1.0 · adaptive* 토큰)
+   타이포: TDS t1~t7 스케일 (본문급 행간 1.5 고정 / 제목급 배율 축소)
+   간격  : TDS ListRow 스케일 (8·12·16·24)
+   ═══════════════════════════════════════════════════════════ */
+
+:root{
+  /* @toss/tds-colors 0.1.0 · colors.light.css 원본 토큰 112개 (인라인) */
+  /* -- Background -- */
+  --adaptiveBackground:#ffffff; --adaptiveBackgroundDimmed:rgba(0,0,0,0.2); --adaptiveBackgroundLevel01:#ffffff;
+  --adaptiveBackgroundLevel02:#ffffff; --adaptiveBackgroundLevelB01:#f2f4f6; --adaptiveDimmedBackground:rgba(0,0,0,0.2);
+  --adaptiveFloatBackground:#ffffff; --adaptiveGreyBackground:#f2f4f6; --adaptiveLayeredBackground:#ffffff;
+  /* -- HairlineBorder -- */
+  --adaptiveHairlineBorder:#e5e8eb;
+  /* -- PcScreenBg -- */
+  --adaptivePcScreenBg:#f6f7f9;
+  /* -- Blue -- */
+  --adaptiveBlue100:#c9e2ff; --adaptiveBlue200:#90c2ff; --adaptiveBlue300:#64a8ff;
+  --adaptiveBlue400:#4593fc; --adaptiveBlue50:#e8f3ff; --adaptiveBlue500:#3182f6;
+  --adaptiveBlue600:#2272eb; --adaptiveBlue700:#1b64da; --adaptiveBlue800:#1957c2;
+  --adaptiveBlue900:#194aa6; --adaptiveDisabledBlue500:#c9e2ff;
+  /* -- Grey -- */
+  --adaptiveGrey100:#f2f4f6; --adaptiveGrey200:#e5e8eb; --adaptiveGrey300:#d1d6db;
+  --adaptiveGrey400:#b0b8c1; --adaptiveGrey50:#f9fafb; --adaptiveGrey500:#8b95a1;
+  --adaptiveGrey600:#6b7684; --adaptiveGrey700:#4e5968; --adaptiveGrey800:#333d4b;
+  --adaptiveGrey900:#191f28; --adaptiveGreyOpacity100:rgba(2,32,71,0.05); --adaptiveGreyOpacity200:rgba(0,27,55,0.1);
+  --adaptiveGreyOpacity300:rgba(0,29,58,0.18); --adaptiveGreyOpacity400:rgba(0,25,54,0.31); --adaptiveGreyOpacity50:rgba(0,23,51,0.02);
+  --adaptiveGreyOpacity500:rgba(3,24,50,0.46); --adaptiveGreyOpacity600:rgba(0,19,43,0.58); --adaptiveGreyOpacity700:rgba(3,18,40,0.7);
+  --adaptiveGreyOpacity800:rgba(0,12,30,0.8); --adaptiveGreyOpacity900:rgba(2,9,19,0.91);
+  /* -- Opacity -- */
+  --adaptiveOpacity100:rgba(2,32,71,0.05); --adaptiveOpacity200:rgba(0,27,55,0.1); --adaptiveOpacity300:rgba(0,29,58,0.18);
+  --adaptiveOpacity400:rgba(0,25,54,0.31); --adaptiveOpacity50:rgba(0,23,51,0.02); --adaptiveOpacity500:rgba(3,24,50,0.46);
+  --adaptiveOpacity600:rgba(0,19,43,0.58); --adaptiveOpacity700:rgba(3,18,40,0.7); --adaptiveOpacity800:rgba(0,12,30,0.8);
+  --adaptiveOpacity900:rgba(2,9,19,0.91);
+  /* -- Green -- */
+  --adaptiveGreen100:#aeefd5; --adaptiveGreen200:#76e4b8; --adaptiveGreen300:#3fd599;
+  --adaptiveGreen400:#15c47e; --adaptiveGreen50:#f0faf6; --adaptiveGreen500:#03b26c;
+  --adaptiveGreen600:#02a262; --adaptiveGreen700:#029359; --adaptiveGreen800:#028450;
+  --adaptiveGreen900:#027648;
+  /* -- Red -- */
+  --adaptiveRed100:#ffd4d6; --adaptiveRed200:#feafb4; --adaptiveRed300:#fb8890;
+  --adaptiveRed400:#f66570; --adaptiveRed50:#ffeeee; --adaptiveRed500:#f04452;
+  --adaptiveRed600:#e42939; --adaptiveRed700:#d22030; --adaptiveRed800:#bc1b2a;
+  --adaptiveRed900:#a51926;
+  /* -- Orange -- */
+  --adaptiveOrange100:#ffe0b0; --adaptiveOrange200:#ffcd80; --adaptiveOrange300:#ffbd51;
+  --adaptiveOrange400:#ffa927; --adaptiveOrange50:#fff3e0; --adaptiveOrange500:#fe9800;
+  --adaptiveOrange600:#fb8800; --adaptiveOrange700:#f57800; --adaptiveOrange800:#ed6700;
+  --adaptiveOrange900:#e45600;
+  /* -- Yellow -- */
+  --adaptiveYellow100:#ffefbf; --adaptiveYellow200:#ffe69b; --adaptiveYellow300:#ffdd78;
+  --adaptiveYellow400:#ffd158; --adaptiveYellow50:#fff9e7; --adaptiveYellow500:#ffc342;
+  --adaptiveYellow600:#ffb331; --adaptiveYellow700:#faa131; --adaptiveYellow800:#ee8f11;
+  --adaptiveYellow900:#dd7d02;
+  /* -- Teal -- */
+  --adaptiveTeal100:#bce9e9; --adaptiveTeal200:#89d8d8; --adaptiveTeal300:#58c7c7;
+  --adaptiveTeal400:#30b6b6; --adaptiveTeal50:#edf8f8; --adaptiveTeal500:#18a5a5;
+  --adaptiveTeal600:#109595; --adaptiveTeal700:#0c8585; --adaptiveTeal800:#097575;
+  --adaptiveTeal900:#076565;
+  /* -- Purple -- */
+  --adaptivePurple100:#edccf8; --adaptivePurple200:#da9bef; --adaptivePurple300:#c770e4;
+  --adaptivePurple400:#b44bd7; --adaptivePurple50:#f9f0fc; --adaptivePurple500:#a234c7;
+  --adaptivePurple600:#9128b4; --adaptivePurple700:#8222a2; --adaptivePurple800:#73228e;
+  --adaptivePurple900:#65237b;
 }
-@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(9px);opacity:.15}100%{transform:translateY(0);opacity:1}}
+
+:root{
+  /* ── 타이포 : TDS t1~t7 ── */
+  --t1: 30px; --t1-lh: 40px;
+  --t2: 26px; --t2-lh: 35px;
+  --t3: 22px; --t3-lh: 31px;
+  --t4: 20px; --t4-lh: 29px;
+  --t5: 17px; --t5-lh: 25.5px;
+  --t6: 15px; --t6-lh: 22.5px;
+  --t7: 13px; --t7-lh: 19.5px;
+
+  /* ── 데스크톱 확장 (t1 위 계단) ── */
+  --display: clamp(38px, 7vw, 76px);
+  --headline: clamp(26px, 3.4vw, 42px);
+  --title: clamp(21px, 2.2vw, 30px);
+
+  /* ── 간격 : TDS ListRow 스케일 ── */
+  --s1: 8px; --s2: 12px; --s3: 16px; --s4: 24px;
+  --s5: 40px; --s6: 64px; --s7: 96px; --s8: 140px;
+
+  /* ── 라운드 ── */
+  --r-card: 20px; --r-lg: 28px; --r-pill: 999px;
+
+  /* ── 레이아웃 ── */
+  --wrap: 1180px;
+  --gut: clamp(20px, 5vw, 64px);
+
+  /* ── 문서 아키타입 전용 색 (가이드 PDF 배지) ── */
+  --badge-step: #6b7fc7;
+  --badge-sample: #f26522;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:"Pretendard Variable",Pretendard,system-ui,-apple-system,sans-serif;
+  font-size:var(--t5); line-height:var(--t5-lh);
+  color:var(--adaptiveGrey800);
+  background:var(--adaptiveBackgroundLevelB01);
+  -webkit-font-smoothing:antialiased;
+  word-break:keep-all;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3,h4,p,ul,ol,figure{ margin:0; }
+ul{ list-style:none; padding:0; }
+
+.wrap{ max-width:var(--wrap); margin-inline:auto; padding-inline:var(--gut); }
+.sec{ padding-block:var(--s8); }
+@media (max-width:720px){ .sec{ padding-block:var(--s7); } }
+
+/* ─────────────────────────────────────────────
+   워터마크 — 제안서 전 페이지 우상단 규칙
+   ───────────────────────────────────────────── */
+.watermark{
+  position:fixed; top:76px; right:clamp(16px,4vw,40px); z-index:40;  /* GNB(60px) 아래 */
+  font-size:var(--t7); line-height:var(--t7-lh); letter-spacing:.01em;
+  color:var(--adaptiveGrey400); pointer-events:none;
+  transition:color .3s ease, opacity .25s ease, visibility .25s ease;
+}
+.watermark.on-dark{ color:rgba(255,255,255,.55); }
+/* 표지를 지나 GNB가 상단에 붙으면 메뉴와 겹치므로 감춘다 */
+.watermark.is-hidden{ opacity:0; visibility:hidden; }
+
+/* ─────────────────────────────────────────────
+   내비게이션
+   ───────────────────────────────────────────── */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--adaptiveHairlineBorder);
+}
+.nav__in{
+  max-width:var(--wrap); margin-inline:auto; padding:0 var(--gut);
+  height:60px; display:flex; align-items:center; gap:var(--s4);
+}
+.nav__name{ font-size:var(--t6); font-weight:700; color:var(--adaptiveGrey900); letter-spacing:-.01em; white-space:nowrap; }
+.nav__links{ display:flex; gap:var(--s4); margin-left:auto; overflow-x:auto; scrollbar-width:none; }
+.nav__links::-webkit-scrollbar{ display:none; }
+.nav__links a{
+  font-size:var(--t7); line-height:var(--t7-lh); text-decoration:none;
+  color:var(--adaptiveGrey600); white-space:nowrap; padding:6px 0;
+  border-bottom:2px solid transparent; transition:color .18s, border-color .18s;
+}
+.nav__links a:hover{ color:var(--adaptiveBlue500); border-bottom-color:var(--adaptiveBlue500); }
+.nav__links a .n{ color:var(--adaptiveGrey400); margin-right:5px; font-variant-numeric:tabular-nums; }
+/* GNB 우측 액션 — 표지를 지나면 등장 (자리를 미리 잡아 레이아웃이 튀지 않게) */
+.nav__acts{
+  display:flex; gap:8px; margin-left:var(--s3); flex-shrink:0;
+  opacity:0; transform:translateY(-4px); pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.nav--acts .nav__acts{ opacity:1; transform:none; pointer-events:auto; }
+.nav__acts .btn{
+  height:36px; padding:0 14px; border-radius:10px;
+  font-size:var(--t7); font-weight:700;
+}
+@media (max-width:900px){ .nav__acts .nav__acts--wide{ display:none; } }
+@media (max-width:640px){
+  .nav__name{ display:none; }
+  .nav__links{ margin-left:0; }
+  .nav__acts{ margin-left:auto; }
+}
+@media (max-width:460px){ .nav .nav__acts{ display:none; } }
+
+/* ─────────────────────────────────────────────
+   [A] 표지 — 대각선 블루 그라데이션 + 좌측 정렬
+   제안서 p1 아키타입
+   ───────────────────────────────────────────── */
+.cover{
+  position:relative; overflow:hidden; isolation:isolate;
+  min-height:min(88vh,760px); display:flex; align-items:center;
+  background:linear-gradient(118deg,#1957c2 0%,#2272eb 42%,#0d8fd6 100%);
+}
+.cover::before,.cover::after{ content:""; position:absolute; inset:0; z-index:-1; }
+/* 대각선으로 갈라지는 면 — 표지의 핵심 */
+.cover::before{
+  background:#3182f6;
+  clip-path:polygon(58% 0,100% 0,100% 100%,0 100%);
+  opacity:.55;
+}
+.cover::after{
+  background:#1b64da;
+  clip-path:ellipse(56% 78% at 96% 34%);
+  opacity:.42;
+}
+.cover__in{ position:relative; width:100%; padding-block:var(--s7); }
+.cover__eyebrow{
+  font-size:var(--t7); line-height:var(--t7-lh); letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:var(--s4);
+}
+.cover h1{
+  font-size:var(--display); line-height:1.06; font-weight:800; letter-spacing:-.035em;
+  color:#fff; margin-bottom:var(--s2);
+}
+.cover__role{
+  font-size:var(--headline); line-height:1.24; font-weight:700; letter-spacing:-.025em;
+  color:rgba(255,255,255,.94); margin-bottom:var(--s4);
+}
+/* 한글 밑 얇은 영문 부제 — 제안서 표지 규칙 */
+.cover__sub{
+  font-size:clamp(15px,1.5vw,21px); line-height:1.4; font-weight:400;
+  color:rgba(255,255,255,.7); letter-spacing:.01em; margin-bottom:var(--s5);
+}
+.cover__lead{
+  font-size:clamp(16px,1.5vw,20px); line-height:1.65; color:rgba(255,255,255,.9);
+  max-width:37em; margin-bottom:var(--s5);
+}
+.cover__lead b{ font-weight:700; color:#fff; }
+.cover__acts{ display:flex; flex-wrap:wrap; gap:var(--s2); }
+
+/* TDS Button — color × variant × display × size 4축 구조 차용 */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height:52px; padding:0 26px; border-radius:14px; border:0;
+  font-family:inherit; font-size:var(--t5); font-weight:600; letter-spacing:-.01em;
+  text-decoration:none; cursor:pointer; white-space:nowrap;
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn--light-fill{ background:#fff; color:var(--adaptiveBlue700); box-shadow:0 8px 24px rgba(0,0,0,.16); }
+.btn--light-weak{ background:rgba(255,255,255,.16); color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.42); }
+.btn--primary-fill{ background:var(--adaptiveBlue500); color:#fff; box-shadow:0 8px 22px rgba(49,130,246,.3); }
+.btn--primary-weak{ background:var(--adaptiveBlue50); color:var(--adaptiveBlue700); }
+.btn--sm{ height:42px; padding:0 18px; font-size:var(--t6); border-radius:11px; }
+
+.cover__meta{
+  margin-top:var(--s6); padding-top:var(--s4);
+  border-top:1px solid rgba(255,255,255,.22);
+  display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5);
+  font-size:var(--t7); line-height:var(--t7-lh); color:rgba(255,255,255,.72);
+}
+.cover__meta b{ color:#fff; font-weight:600; }
+
+/* ─────────────────────────────────────────────
+   섹션 헤더 — 제목 좌상단 고정 + 회색 부제
+   ───────────────────────────────────────────── */
+.shead{ margin-bottom:var(--s6); }
+.shead__no{
+  display:inline-block; font-size:var(--t7); line-height:var(--t7-lh); font-weight:700;
+  letter-spacing:.16em; color:var(--adaptiveBlue500); margin-bottom:var(--s2);
+}
+.shead h2{
+  font-size:var(--headline); line-height:1.22; font-weight:800;
+  letter-spacing:-.03em; color:var(--adaptiveGrey900);
+}
+.shead h2 em{ font-style:normal; color:var(--adaptiveBlue500); }
+.shead p{
+  margin-top:var(--s3); font-size:var(--t5); line-height:1.6;
+  color:var(--adaptiveGrey600); max-width:60em;
+}
+.shead p b{ color:var(--adaptiveGrey800); font-weight:600; }
+/* 안내 페이지 가로 구분선 — 가이드 p2·p4 규칙 */
+.shead--ruled{ border-bottom:1px solid var(--adaptiveHairlineBorder); padding-bottom:var(--s4); }
+
+/* ─────────────────────────────────────────────
+   [B] 섹션 간지 — 단색 블루 전면 + 제목 한 줄
+   제안서 p23 아키타입 (부제·목차 없음)
+   ───────────────────────────────────────────── */
+.divider{
+  background:var(--adaptiveBlue500);
+  min-height:min(46vh,380px); display:flex; align-items:flex-end;
+  padding-block:var(--s6);
+}
+.divider__in{ width:100%; }
+.divider__no{
+  font-size:var(--t7); line-height:var(--t7-lh); letter-spacing:.18em;
+  color:rgba(255,255,255,.62); margin-bottom:var(--s2);
+}
+.divider h2{
+  font-size:clamp(32px,5.2vw,64px); line-height:1.08; font-weight:800;
+  letter-spacing:-.035em; color:#fff;
+}
+
+/* ─────────────────────────────────────────────
+   프로필 표 — 라운드 박스 + 가로선만 (제안서 p24)
+   ───────────────────────────────────────────── */
+.dl{ display:grid; grid-template-columns:minmax(96px,150px) 1fr; }
+.dl > div{
+  display:contents;
+}
+.dl dt,.dl dd{
+  padding:15px 4px; border-bottom:1px solid var(--adaptiveGrey100); margin:0;
+  font-size:var(--t6); line-height:var(--t6-lh);
+}
+.dl dt{ color:var(--adaptiveGrey600); font-weight:600; }
+.dl dd{ color:var(--adaptiveGrey800); }
+.dl dt:last-of-type,.dl dd:last-of-type{ border-bottom:0; }
+/* 인적사항 — 카드 없이 표만 (dt/dd 2쌍 4열) */
+.dl--plain{
+  grid-template-columns:minmax(88px,128px) 1fr minmax(88px,128px) 1fr;
+  column-gap:var(--s5);
+}
+.dl--plain dt,.dl--plain dd{ border-bottom:1px solid var(--adaptiveGrey200); }
+.dl--plain dt:nth-last-of-type(-n+2),
+.dl--plain dd:nth-last-of-type(-n+2){ border-bottom:0; }
+@media (max-width:820px){
+  .dl--plain{ grid-template-columns:minmax(88px,128px) 1fr; column-gap:0; }
+  .dl--plain dt:nth-last-of-type(-n+2),
+  .dl--plain dd:nth-last-of-type(-n+2){ border-bottom:1px solid var(--adaptiveGrey200); }
+  .dl--plain dt:last-of-type,.dl--plain dd:last-of-type{ border-bottom:0; }
+}
+
+.foot-note{
+  margin-top:var(--s3); font-size:var(--t7); line-height:1.7; color:var(--adaptiveGrey500);
+}
+.foot-note li::before{ content:"* "; }
+
+/* 섹션 내부 블록 제목 */
+.blk-h{
+  font-size:var(--t3); font-weight:800; color:var(--adaptiveGrey900);
+  letter-spacing:-.025em; margin-bottom:var(--s5);
+}
+/* 제목 옆 수치 배지 */
+.blk-h__badge{
+  display:inline-block; vertical-align:middle; margin-left:var(--s3);
+  padding:5px 12px; border-radius:99px;
+  background:var(--adaptiveBlue50); color:var(--adaptiveBlue600);
+  font-size:var(--t6); font-weight:700; letter-spacing:-.01em;
+  transform:translateY(-2px);
+}
+
+/* ─────────────────────────────────────────────
+   [C] 순서 도식 — 화살표 도형 세로 적층, 색 농도 진행
+   가이드 p3 아키타입 (경력 타임라인에 적용)
+   ───────────────────────────────────────────── */
+.flow{ display:grid; grid-template-columns:minmax(200px,268px) 1fr; gap:0 var(--s5); }
+.flow__steps{ display:flex; flex-direction:column; gap:6px; }
+.flow__step{
+  position:relative; padding:22px 16px 30px; text-align:center;
+  clip-path:polygon(0 0,100% 0,100% 76%,50% 100%,0 76%); /* ↓ 향하는 화살표 */
+  color:#fff; font-weight:700; font-size:var(--t6); line-height:var(--t6-lh);
+}
+/* 아래로 갈수록 진해짐 */
+.flow__step:nth-child(1){ background:#c9e2ff; color:var(--adaptiveBlue900); }
+.flow__step:nth-child(2){ background:#90c2ff; color:var(--adaptiveBlue900); }
+.flow__step:nth-child(3){ background:#4593fc; }
+.flow__step:nth-child(4){ background:#1b64da; }
+.flow__step small{ display:block; font-size:var(--t7); font-weight:500; opacity:.82; margin-top:3px; }
+.flow__descs{ display:flex; flex-direction:column; gap:var(--s5); }
+.flow__desc h4{
+  font-size:var(--t4); line-height:var(--t4-lh); font-weight:700;
+  color:var(--adaptiveGrey900); letter-spacing:-.02em; margin-bottom:var(--s1);
+}
+.flow__desc .org{ font-size:var(--t7); color:var(--adaptiveBlue500); font-weight:600; margin-bottom:var(--s2); }
+.flow__desc p{ font-size:var(--t6); line-height:1.68; color:var(--adaptiveGrey700); }
+/* ">" 하위 항목 — 가이드 p3 규칙 */
+.chev{ margin-top:var(--s2); display:flex; flex-wrap:wrap; gap:6px 14px; }
+.chev li{ font-size:var(--t7); line-height:var(--t7-lh); color:var(--adaptiveGrey600); }
+.chev li::before{ content:"›"; color:var(--adaptiveBlue400); font-weight:700; margin-right:6px; }
+@media (max-width:820px){
+  .flow{ grid-template-columns:1fr; gap:var(--s4); }
+  .flow__steps{ flex-direction:row; gap:4px; }
+  .flow__step{ flex:1; clip-path:polygon(0 0,86% 0,100% 50%,86% 100%,0 100%); padding:16px 10px; font-size:var(--t7); }
+  .flow__step small{ display:none; }
+}
+
+/* ─────────────────────────────────────────────
+   프로젝트 — 단계 배지 + 파란 실선 강조
+   가이드 p6~19 반복 템플릿
+   ───────────────────────────────────────────── */
+.proj{ margin-bottom:var(--s8); }
+.proj:last-child{ margin-bottom:0; }
+/* 청보라 알약 배지, 상단 중앙 고정 */
+.stepbadge{
+  display:block; width:fit-content; margin:0 auto var(--s4);
+  background:var(--badge-step); color:#fff; border-radius:var(--r-pill);
+  padding:9px 26px; font-size:var(--t6); line-height:var(--t6-lh); font-weight:700;
+  letter-spacing:-.01em;
+}
+.proj__head{ text-align:center; margin-bottom:var(--s5); }
+/* 굵은 지시문 1줄 */
+.proj__claim{
+  font-size:var(--title); line-height:1.3; font-weight:800;
+  letter-spacing:-.028em; color:var(--adaptiveGrey900); margin-bottom:var(--s2);
+}
+.proj__claim em{ font-style:normal; color:var(--adaptiveBlue500); }
+/* 회색 보조 설명 */
+.proj__sub{ font-size:var(--t6); line-height:var(--t6-lh); color:var(--adaptiveGrey500); }
+.tags{ display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:var(--s3); }
+.tag{
+  font-size:var(--t7); line-height:1; padding:7px 12px; border-radius:var(--r-pill);
+  background:var(--adaptiveGrey100); color:var(--adaptiveGrey700); font-weight:600;
+}
+.tag--key{ background:var(--adaptiveBlue50); color:var(--adaptiveBlue700); }
+
+/* 파란 실선 강조 — 가이드의 "여기를 보라" 표시 */
+.shot{
+  position:relative; border:2.5px solid var(--adaptiveBlue500); border-radius:var(--r-card);
+  overflow:hidden; background:var(--adaptiveBackgroundLevel01);
+  box-shadow:0 10px 40px rgba(0,25,54,.09);
+}
+.shot img{ width:100%; }
+/* 주황 "예시" 배지 — 실제 화면이 아님을 못 박음 */
+.samplebadge{
+  position:absolute; top:12px; right:12px; z-index:3;
+  background:var(--badge-sample); color:#fff; border-radius:8px;
+  padding:6px 14px; font-size:var(--t7); line-height:1; font-weight:700;
+  letter-spacing:.02em; box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.proj__body{ display:grid; grid-template-columns:1.15fr 1fr; gap:var(--s5); align-items:start; }
+@media (max-width:900px){ .proj__body{ grid-template-columns:1fr; } }
+
+/* 아이콘 + 설명 2줄 세로 나열 — 제안서 p20 아키타입 */
+.points{ display:flex; flex-direction:column; gap:var(--s4); }
+.point{ display:flex; gap:var(--s3); align-items:flex-start; }
+.point__ico{
+  flex:0 0 auto; width:42px; height:42px; border-radius:50%;
+  display:grid; place-items:center; font-size:17px; font-weight:800;
+  background:var(--adaptiveBlue50); color:var(--adaptiveBlue600);
+  font-variant-numeric:tabular-nums;
+}
+.point p{ font-size:var(--t6); line-height:1.68; color:var(--adaptiveGrey700); }
+.point p b{ color:var(--adaptiveGrey900); font-weight:700; }
+.point p .hl{ color:var(--adaptiveBlue600); font-weight:700; }
+/* 성과 강조 */
+.result{
+  margin-top:var(--s3); padding:var(--s3) var(--s4);
+  background:var(--adaptiveBlue50); border-radius:14px;
+  font-size:var(--t6); line-height:1.6; color:var(--adaptiveBlue800); font-weight:600;
+}
+.result b{ font-size:var(--t4); font-weight:800; letter-spacing:-.02em; }
+
+/* ─────────────────────────────────────────────
+   [G] AS-IS / TO-BE — 명암 반전 좌우 분할
+   제안서 p10 아키타입
+   ───────────────────────────────────────────── */
+.compare{
+  display:grid; grid-template-columns:1fr auto 1fr; gap:0;
+  border-radius:var(--r-lg); overflow:hidden; margin-top:var(--s5);
+}
+.compare__side{ padding:clamp(24px,3.4vw,46px); }
+.compare__side--as{ background:#17171c; color:#fff; }
+.compare__side--to{ background:var(--adaptiveBackgroundLevel01); }
+.compare__tag{
+  font-size:var(--t7); line-height:var(--t7-lh); font-weight:700;
+  letter-spacing:.1em; margin-bottom:var(--s3);
+}
+.compare__side--as .compare__tag{ color:rgba(255,255,255,.55); }
+.compare__side--to .compare__tag{ color:var(--adaptiveBlue500); }
+.compare__side h4{
+  font-size:var(--t3); line-height:var(--t3-lh); font-weight:800;
+  letter-spacing:-.025em; margin-bottom:var(--s3);
+}
+.compare__side--to h4{ color:var(--adaptiveGrey900); }
+.compare__list li{
+  font-size:var(--t6); line-height:1.62; padding:11px 0 11px 20px; position:relative;
+}
+.compare__side--as .compare__list li{ color:rgba(255,255,255,.72); border-bottom:1px solid rgba(255,255,255,.1); }
+.compare__side--to .compare__list li{ color:var(--adaptiveGrey700); border-bottom:1px solid var(--adaptiveGrey100); }
+.compare__list li::before{
+  content:""; position:absolute; left:2px; top:19px;
+  width:6px; height:6px; border-radius:50%;
+}
+.compare__side--as .compare__list li::before{ background:rgba(255,255,255,.32); }
+.compare__side--to .compare__list li::before{ background:var(--adaptiveBlue400); }
+.compare__list li:last-child{ border-bottom:0; }
+/* 가운데 흰 화살표 */
+.compare__arrow{
+  display:grid; place-items:center; background:var(--adaptiveGrey100);
+  padding-inline:clamp(12px,2vw,26px); color:var(--adaptiveBlue500);
+  font-size:28px; font-weight:800;
+}
+@media (max-width:820px){
+  .compare{ grid-template-columns:1fr; }
+  .compare__arrow{ padding-block:14px; transform:rotate(90deg); }
+}
+
+/* ─────────────────────────────────────────────
+   [J] 스윔레인 프로세스 — 2행, 담당 구분, 색 농도 진행
+   제안서 p25 아키타입
+   ───────────────────────────────────────────── */
+.swim{
+  margin-top:var(--s5); background:var(--adaptiveBackgroundLevel01);
+  border-radius:var(--r-lg); padding:clamp(20px,3vw,40px); overflow-x:auto;
+}
+.swim__grid{ min-width:660px; display:grid; grid-template-columns:118px 1fr; gap:var(--s4) var(--s4); align-items:center; }
+.swim__who{
+  font-size:var(--t7); line-height:1.5; font-weight:700; color:var(--adaptiveGrey700); text-align:center;
+}
+.swim__who span{
+  display:grid; place-items:center; width:46px; height:46px; margin:0 auto 8px;
+  border-radius:50%; font-size:20px;
+}
+.swim__who--me span{ background:var(--adaptiveBlue50); }
+.swim__who--them span{ background:var(--adaptiveGrey100); }
+.swim__lane{ display:flex; align-items:center; gap:10px; }
+.swim__box{
+  flex:1; text-align:center; border-radius:14px; padding:16px 10px;
+  font-size:var(--t7); line-height:1.42; font-weight:700;
+}
+.swim__box small{ display:block; font-weight:500; opacity:.8; margin-top:4px; font-size:11.5px; }
+.swim__lane--me .swim__box:nth-child(1){ background:#c9e2ff; color:var(--adaptiveBlue900); }
+.swim__lane--me .swim__box:nth-child(3){ background:#90c2ff; color:var(--adaptiveBlue900); }
+.swim__lane--me .swim__box:nth-child(5){ background:#4593fc; color:#fff; }
+.swim__lane--me .swim__box:nth-child(7){ background:#1957c2; color:#fff; }
+.swim__lane--them .swim__box{ background:var(--adaptiveGrey100); color:var(--adaptiveGrey700); }
+/* 실선 / 점선 화살표 2종 */
+.arw{ flex:0 0 26px; text-align:center; color:var(--adaptiveGrey400); font-weight:800; }
+.arw--dot{ letter-spacing:2px; font-weight:600; }
+.swim__note{
+  margin-top:var(--s4); background:#17171c; color:#fff; border-radius:12px;
+  padding:14px 18px; font-size:var(--t7); line-height:1.6;
+}
+.swim__note b{ color:#90c2ff; }
+
+/* ─────────────────────────────────────────────
+   [F] 3열 카드 — 제안서 p6·8·15·18 (최다 사용)
+   카피(강조어만 블루) → 아이콘 → 설명
+   ───────────────────────────────────────────── */
+.cards{ display:grid; gap:var(--s4); }
+.cards--3{ grid-template-columns:repeat(3,1fr); }
+.cards--2{ grid-template-columns:repeat(2,1fr); }
+@media (max-width:900px){ .cards--3{ grid-template-columns:1fr; } .cards--2{ grid-template-columns:1fr; } }
+.card{
+  background:var(--adaptiveBackgroundLevel01); border-radius:var(--r-lg);
+  padding:clamp(24px,2.6vw,36px);
+  display:flex; flex-direction:column;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.card:hover{ transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,25,54,.09); }
+.card__copy{
+  font-size:var(--t4); line-height:1.42; font-weight:700;
+  letter-spacing:-.022em; color:var(--adaptiveGrey900); margin-bottom:var(--s4);
+}
+.card__copy em{ font-style:normal; color:var(--adaptiveBlue500); }
+.card__fig{
+  margin:auto 0 var(--s4); border-radius:14px; overflow:hidden;
+  background:var(--adaptiveGrey50); border:1px solid var(--adaptiveGrey100);
+}
+.card__fig img{ width:100%; aspect-ratio:4/3; object-fit:cover; object-position:top; }
+.card__desc{ font-size:var(--t6); line-height:1.68; color:var(--adaptiveGrey600); }
+.card__desc b{ color:var(--adaptiveGrey800); font-weight:600; }
+.card__no{
+  font-size:var(--t7); line-height:1; font-weight:800; letter-spacing:.1em;
+  color:var(--adaptiveBlue400); margin-bottom:var(--s2); font-variant-numeric:tabular-nums;
+}
+/* 지시 + 이유 2단 구조 — 가이드 p4 규칙 */
+.card__why{
+  margin-top:var(--s3); padding-top:var(--s3);
+  border-top:1px solid var(--adaptiveGrey100);
+  font-size:var(--t7); line-height:1.66; color:var(--adaptiveGrey500);
+}
+.card__why::before{ content:"왜 "; font-weight:700; color:var(--adaptiveBlue400); }
+
+/* 산출물 3열 — 예시 배지 얹은 도큐먼트 카드 */
+.doccard{ padding:0; overflow:hidden; }
+.doccard__shot{ position:relative; background:var(--adaptiveGrey50); border-bottom:1px solid var(--adaptiveGrey100); }
+.doccard__shot img{ width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top center; }
+.doccard__txt{ padding:clamp(20px,2.2vw,28px); }
+.doccard__kind{ font-size:var(--t7); font-weight:700; color:var(--adaptiveBlue500); margin-bottom:6px; }
+.doccard__name{ font-size:var(--t5); line-height:1.42; font-weight:700; color:var(--adaptiveGrey900); letter-spacing:-.02em; }
+.doccard__desc{ margin-top:var(--s2); font-size:var(--t7); line-height:1.66; color:var(--adaptiveGrey600); }
+
+/* 문서 갈래 3분류 */
+.kinds{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s3); margin-bottom:var(--s5); }
+@media (max-width:760px){ .kinds{ grid-template-columns:1fr; } }
+.kind{
+  background:var(--adaptiveBlue50); border-radius:var(--r-card);
+  padding:var(--s4); text-align:center;
+}
+.kind h4{ font-size:var(--t5); font-weight:700; color:var(--adaptiveBlue800); letter-spacing:-.02em; margin-bottom:var(--s2); }
+.kind ul li{ font-size:var(--t7); line-height:1.85; color:var(--adaptiveBlue700); }
+
+/* ─────────────────────────────────────────────
+   활용 툴
+   ───────────────────────────────────────────── */
+.tools{ display:grid; grid-template-columns:repeat(7,1fr); gap:var(--s3); }
+@media (max-width:1080px){ .tools{ grid-template-columns:repeat(4,1fr); } }
+@media (max-width:640px){ .tools{ grid-template-columns:repeat(2,1fr); gap:var(--s2); } }
+.tool{
+  background:var(--adaptiveBackgroundLevel01); border-radius:16px;
+  padding:var(--s4) var(--s3) var(--s3); text-align:center;
+  border:1px solid var(--adaptiveGrey100);
+  display:flex; flex-direction:column;   /* 게이지 하단 정렬 */
+}
+.tool img{ width:34px; height:34px; margin:0 auto 10px; object-fit:contain; }
+.tool__n{
+  font-size:var(--t7); font-weight:700; color:var(--adaptiveGrey800); line-height:1.4;
+  flex:1 0 auto;
+}
+
+/* 숙련도 게이지 — .rise.in 진입 시 채워짐 */
+.tool__meter{
+  margin-top:12px; height:6px; border-radius:99px;
+  background:var(--adaptiveGrey200); overflow:hidden;
+}
+.tool__meter i{
+  display:block; height:100%; width:0; border-radius:99px;
+  background:var(--adaptiveBlue500);
+  transition:width .9s cubic-bezier(.22,1,.36,1);
+}
+.rise.in .tool__meter i{ width:var(--lv); }
+.tool--mid .tool__meter i{ background:var(--adaptiveBlue300); }
+.tool:nth-child(1) .tool__meter i{ transition-delay:.10s; }
+.tool:nth-child(2) .tool__meter i{ transition-delay:.18s; }
+.tool:nth-child(3) .tool__meter i{ transition-delay:.26s; }
+.tool:nth-child(4) .tool__meter i{ transition-delay:.34s; }
+.tool:nth-child(5) .tool__meter i{ transition-delay:.42s; }
+.tool:nth-child(6) .tool__meter i{ transition-delay:.50s; }
+.tool:nth-child(7) .tool__meter i{ transition-delay:.58s; }
+.tool__lv{
+  margin-top:7px; font-size:11.5px; font-weight:700;
+  color:var(--adaptiveBlue500); letter-spacing:.02em;
+}
+.tool--mid .tool__lv{ color:var(--adaptiveGrey600); }
+
+/* ─────────────────────────────────────────────
+   맺음말 — 블루 전면 + 중앙 CTA (제안서 p26)
+   ───────────────────────────────────────────── */
+.closing{
+  background:linear-gradient(118deg,#1957c2 0%,#2272eb 44%,#0d8fd6 100%);
+  position:relative; overflow:hidden; isolation:isolate; text-align:center;
+  padding-block:var(--s8);
+}
+.closing::before{
+  content:""; position:absolute; inset:0; z-index:-1; background:#3182f6;
+  clip-path:polygon(52% 0,100% 0,100% 100%,10% 100%); opacity:.5;
+}
+.closing h2{
+  font-size:clamp(26px,3.8vw,50px); line-height:1.24; font-weight:800;
+  letter-spacing:-.032em; color:#fff; margin-bottom:var(--s4);
+}
+.closing p{
+  font-size:clamp(15px,1.5vw,19px); line-height:1.7; color:rgba(255,255,255,.86);
+  max-width:44em; margin:0 auto var(--s6);
+}
+.closing__acts{ display:flex; flex-wrap:wrap; gap:var(--s2); justify-content:center; }
+/* 맺음말 연락처 — 버튼 대신 글자로 한 번 더 */
+.closing__contact{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:var(--s2) var(--s4);
+}
+.closing__contact a{
+  font-size:clamp(19px,2.3vw,30px); line-height:1.35; font-weight:700;
+  letter-spacing:-.02em; color:#fff; text-decoration:none;
+  padding-bottom:3px; border-bottom:1.5px solid rgba(255,255,255,.34);
+  transition:border-color .18s ease;
+}
+.closing__contact a:hover{ border-bottom-color:#fff; }
+.closing__sep{
+  width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.5);
+}
+@media (max-width:560px){ .closing__sep{ display:none; } }
+
+/* ─────────────────────────────────────────────
+   푸터
+   ───────────────────────────────────────────── */
+.foot{ background:#17171c; color:rgba(255,255,255,.55); padding-block:var(--s5); }
+.foot__in{ display:flex; flex-wrap:wrap; gap:var(--s3) var(--s5); align-items:center; justify-content:space-between; }
+.foot__name{ font-size:var(--t7); letter-spacing:.1em; font-weight:700; color:rgba(255,255,255,.8); }
+.foot__c{ display:flex; flex-wrap:wrap; gap:var(--s4); font-size:var(--t7); }
+.foot__c a{ text-decoration:none; color:rgba(255,255,255,.7); }
+.foot__c a:hover{ color:#fff; }
+
+/* ─────────────────────────────────────────────
+   문서 뷰어 모달 — 화면설계서 상세보기
+   ───────────────────────────────────────────── */
+.doccard__more{ margin-top:var(--s3); }
+.doccard__more span{ font-size:1.05em; line-height:1; }
+
+.docmodal{
+  position:fixed; inset:0; z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(12px,2.4vw,32px);
+}
+.docmodal[hidden]{ display:none; }
+.docmodal__scrim{
+  position:fixed; inset:0; background:rgba(0,12,30,.84);
+  animation:dm-fade .2s ease;
+}
+.docmodal__panel{
+  position:relative; z-index:1;
+  width:min(1420px,100%); height:100%;
+  display:flex; flex-direction:column;
+  background:var(--adaptiveBackgroundLevel01); border-radius:var(--r-lg);
+  box-shadow:0 30px 80px rgba(0,12,30,.4); overflow:hidden;
+  animation:dm-pop .24s cubic-bezier(.22,1,.36,1);
+}
+@keyframes dm-fade{ from{ opacity:0 } to{ opacity:1 } }
+@keyframes dm-pop{ from{ opacity:0; transform:translateY(14px) scale(.985) } to{ opacity:1; transform:none } }
+
+.docmodal__head{
+  flex:0 0 auto;
+  display:flex; align-items:flex-start; gap:var(--s3);
+  padding:var(--s4) var(--s4) var(--s3);
+  border-bottom:1px solid var(--adaptiveGrey200);
+}
+.docmodal__headtxt{ min-width:0; }
+.docmodal__eyebrow{
+  font-size:var(--t7); line-height:var(--t7-lh); font-weight:700;
+  color:var(--adaptiveBlue500); letter-spacing:.02em; margin-bottom:4px;
+}
+.docmodal__title{
+  font-size:var(--t3); line-height:1.3; font-weight:800;
+  color:var(--adaptiveGrey900); letter-spacing:-.025em;
+  overflow-wrap:anywhere;
+}
+.docmodal__tools{ margin-left:auto; display:flex; align-items:center; gap:var(--s3); flex-shrink:0; }
+.docmodal__count{ font-size:var(--t6); font-weight:600; color:var(--adaptiveGrey500); white-space:nowrap; }
+.docmodal__count b{ color:var(--adaptiveGrey900); font-weight:800; }
+.docmodal__x{
+  width:40px; height:40px; border:0; border-radius:12px; cursor:pointer;
+  background:var(--adaptiveGrey100); color:var(--adaptiveGrey700);
+  font-family:inherit; font-size:17px; line-height:1;
+  transition:background .16s ease, color .16s ease;
+}
+.docmodal__x:hover{ background:var(--adaptiveGrey200); color:var(--adaptiveGrey900); }
+
+.docmodal__stage{
+  position:relative; flex:1 1 auto; min-height:0; overflow:hidden;
+  background:var(--adaptiveGrey50);
+}
+.docmodal__scroll{
+  width:100%; height:100%; padding:var(--s3);
+  display:flex; align-items:center; justify-content:center;
+}
+.docmodal__stage img{
+  display:block; width:100%; height:100%;
+  object-fit:contain; object-position:center;
+}
+#dm-img2{ display:none; }
+.docmodal__arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:48px; height:48px; border:0; border-radius:50%; cursor:pointer;
+  background:var(--adaptiveBackgroundLevel01); color:var(--adaptiveGrey800);
+  box-shadow:0 4px 16px rgba(0,25,54,.18);
+  font-family:inherit; font-size:26px; line-height:1; padding:0 0 3px;
+  transition:transform .16s ease, background .16s ease;
+}
+.docmodal__arrow:hover:not(:disabled){ transform:translateY(-50%) scale(1.06); }
+.docmodal__arrow:disabled{ opacity:.32; cursor:default; }
+.docmodal__arrow{ z-index:2; }
+.docmodal__arrow--prev{ left:var(--s3); }
+.docmodal__arrow--next{ right:var(--s3); }
+
+.docmodal__rail{
+  flex:0 0 auto;
+  display:flex; flex-wrap:wrap; gap:6px;
+  padding:var(--s3) var(--s4); border-top:1px solid var(--adaptiveGrey200);
+}
+.docmodal__dot{
+  min-width:34px; height:34px; padding:0 9px; border:0; border-radius:10px; cursor:pointer;
+  background:var(--adaptiveGrey100); color:var(--adaptiveGrey600);
+  font-family:inherit; font-size:var(--t7); font-weight:700;
+  transition:background .16s ease, color .16s ease;
+}
+.docmodal__dot:hover{ background:var(--adaptiveGrey200); }
+.docmodal__dot[aria-current="true"]{ background:var(--adaptiveBlue500); color:#fff; }
+
+@media (max-width:760px){
+  .docmodal{ padding:0; }
+  .docmodal__panel{ height:100%; max-height:100%; border-radius:0; }
+  .docmodal__head{ padding:var(--s3); }
+  .docmodal__title{ font-size:var(--t5); }
+  .docmodal__eyebrow{ font-size:11.5px; }
+  .docmodal__x{ width:36px; height:36px; }
+  .docmodal__arrow{ width:40px; height:40px; font-size:22px; }
+  .docmodal__rail{ padding:var(--s2) var(--s3); overflow-x:auto; flex-wrap:nowrap; }
+  .docmodal__dot{ flex:0 0 auto; }
+}
+/* ── MO·태블릿 : 2장을 위아래로 쌓고 세로 스크롤, 폭 기준으로 축소 ── */
+@media (max-width:1024px){
+  .docmodal__scroll{
+    flex-direction:column; justify-content:flex-start; align-items:stretch; gap:var(--s2);
+    overflow-y:auto; overflow-x:hidden;
+    padding:var(--s2) var(--s2) 62px; -webkit-overflow-scrolling:touch; overflow-anchor:none;
+  }
+  .docmodal__stage img{
+    flex:0 0 auto; width:100%; height:auto; aspect-ratio:16/9;
+    background:#fff; border-radius:8px;
+    box-shadow:0 1px 6px rgba(0,25,54,.1);
+  }
+  #dm-img2{ display:block; }
+  #dm-img2[hidden]{ display:none; }
+  .docmodal .docmodal__hint{ display:block; }
+  .docmodal .dm-swipe{ display:flex; }
+  /* 화살표가 문서를 가리지 않게 안쪽에서 살짝 띄운다 */
+  .docmodal__arrow{ top:auto; bottom:calc(var(--s3) + 46px); transform:none; }
+  .docmodal__arrow:hover:not(:disabled){ transform:none; }
+  .docmodal__title{
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+}
+
+/* ── 좌우 스와이프 안내 — MO·태블릿에서만, 첫 스와이프 뒤 사라짐 ── */
+.dm-swipe{
+  display:none; position:absolute; left:50%; bottom:var(--s3);
+  transform:translateX(-50%); z-index:3; pointer-events:none;
+  align-items:center; gap:8px;
+  padding:9px 15px 9px 12px; border-radius:var(--r-pill);
+  background:rgba(0,12,30,.72); color:#fff;
+  box-shadow:0 6px 20px rgba(0,12,30,.28);
+  animation:dm-swipe-in .3s ease both;
+}
+.dm-swipe.is-gone{ animation:dm-swipe-out .3s ease both; }
+.dm-swipe__hand{ width:24px; height:24px; flex:0 0 auto; animation:dm-hand 2.1s ease-in-out infinite; }
+.dm-swipe__chev{
+  font-size:19px; line-height:1; opacity:.5;
+  animation:dm-chev 2.1s ease-in-out infinite;
+}
+.dm-swipe__chev--r{ animation-delay:1.05s; }
+.dm-swipe__txt{ font-size:var(--t7); font-weight:600; letter-spacing:-.01em; white-space:nowrap; }
+@keyframes dm-hand{
+  0%,100%{ transform:translateX(0) }
+  25%{ transform:translateX(-7px) }
+  75%{ transform:translateX(7px) }
+}
+@keyframes dm-chev{
+  0%,100%{ opacity:.32 }
+  50%{ opacity:1 }
+}
+@keyframes dm-swipe-in{ from{ opacity:0; transform:translateX(-50%) translateY(8px) } to{ opacity:1 } }
+@keyframes dm-swipe-out{ from{ opacity:1 } to{ opacity:0; transform:translateX(-50%) translateY(8px) } }
+
+.docmodal__hint{
+  display:none; flex:0 0 auto; padding:0 var(--s3) var(--s2);
+  font-size:11.5px; color:var(--adaptiveGrey500); text-align:center;
+}
+@media (prefers-reduced-motion:reduce){
+  .docmodal__scrim,.docmodal__panel{ animation:none; }
+  .dm-swipe,.dm-swipe__hand,.dm-swipe__chev{ animation:none; }
+  .docmodal__arrow:hover:not(:disabled){ transform:translateY(-50%); }
+}
+
+
+/* ───────────────────────────────────────────
+   사업 관리 — 계약 관리 / 프로젝트 관리
+   ─────────────────────────────────────────── */
+.blk-lead{ max-width:78ch; margin:calc(var(--s5) * -1 + 4px) 0 var(--s4); font-size:var(--t6); line-height:1.72; color:var(--adaptiveGrey600); }
+.blk-lead b{ color:var(--adaptiveGrey800); font-weight:600; }
+
+.mgmt{ display:grid; grid-template-columns:1fr 1.08fr; gap:var(--s5); align-items:start; }
+@media (max-width:900px){ .mgmt{ grid-template-columns:1fr; gap:var(--s4); } }
+
+/* 세로 타임라인 — 반복 절차 */
+.track{ position:relative; padding-left:28px; }
+.track__i{ position:relative; padding-bottom:var(--s4); }
+/* 연결선은 항목마다 "다음 점까지"만 긋는다 — 마지막 점 아래로 늘어지지 않게 */
+.track__i::after{
+  content:""; position:absolute; left:-23px; top:16px; bottom:-5px; width:2px;
+  background:var(--adaptiveBlue100);
+}
+.track__i:last-child::after{ content:none; }
+.track__i:last-child{ padding-bottom:0; }
+.track__i::before{
+  content:""; position:absolute; left:-28px; top:5px; width:12px; height:12px; border-radius:50%;
+  background:var(--adaptiveBlue400); box-shadow:0 0 0 4px var(--adaptiveBlue50);
+}
+.track__i:last-child::before{ background:var(--adaptiveBlue700); }
+.track__t{ font-size:var(--t6); line-height:var(--t6-lh); font-weight:700; letter-spacing:-.02em; color:var(--adaptiveGrey900); }
+.track__t .n{ color:var(--adaptiveBlue400); margin-right:7px; font-variant-numeric:tabular-nums; }
+.track__d{ margin-top:4px; font-size:var(--t7); line-height:1.66; color:var(--adaptiveGrey600); }
+
+/* 수치 타일 */
+.stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s2); margin-top:var(--s4); }
+@media (max-width:520px){ .stats{ grid-template-columns:1fr; } }
+.stat{ background:var(--adaptiveBlue50); border-radius:14px; padding:16px 18px; }
+.stat b{
+  display:block; font-size:var(--t3); line-height:1.2; font-weight:800;
+  letter-spacing:-.03em; color:var(--adaptiveBlue700); font-variant-numeric:tabular-nums;
+}
+.stat span{ display:block; margin-top:4px; font-size:var(--t7); line-height:1.5; color:var(--adaptiveBlue800); opacity:.78; }
+
+/* 근거 캡처 */
+.mgmt__fig{
+  position:relative; overflow:hidden;
+  background:var(--adaptiveGrey50); border:1px solid var(--adaptiveGrey200); border-radius:var(--r-card);
+}
+.mgmt__fig img{ width:100%; }
+.mgmt__cap{
+  padding:12px var(--s3); border-top:1px solid var(--adaptiveGrey200);
+  background:var(--adaptiveBackgroundLevel01);
+  font-size:var(--t7); line-height:1.6; color:var(--adaptiveGrey500);
+}
+
+/* ── 팀 캐릭터 — 디자이너 / 프로그래머 ── */
+.crew{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s4); }
+@media (max-width:820px){ .crew{ grid-template-columns:1fr; } }
+.crew__c{
+  display:grid; grid-template-columns:96px 1fr; gap:var(--s4); align-items:start;
+  padding:clamp(20px,2.3vw,28px);
+  background:var(--adaptiveBackgroundLevel01);
+  border:1px solid var(--adaptiveGrey200); border-radius:var(--r-card);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.crew__c:hover{ transform:translateY(-4px); border-color:var(--adaptiveBlue200); box-shadow:0 14px 40px rgba(0,25,54,.09); }
+@media (max-width:420px){ .crew__c{ grid-template-columns:1fr; } }
+.crew__av{ width:96px; height:112px; display:block; }
+.crew__c:hover .crew__av{ animation:crew-bob 1.7s ease-in-out infinite; }
+@keyframes crew-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-5px); } }
+.crew__role{
+  display:inline-block; padding:4px 12px; border-radius:var(--r-pill);
+  background:var(--adaptiveBlue50); color:var(--adaptiveBlue700);
+  font-size:var(--t7); line-height:var(--t7-lh); font-weight:700;
+}
+.crew__n{ margin-top:10px; font-size:var(--t5); line-height:1.42; font-weight:700; letter-spacing:-.02em; color:var(--adaptiveGrey900); }
+.crew__d{ margin-top:6px; font-size:var(--t7); line-height:1.66; color:var(--adaptiveGrey600); }
+.crew__hand{ margin-top:var(--s3); padding-top:var(--s2); border-top:1px dashed var(--adaptiveGrey300); }
+.crew__hand dt{ font-size:11.5px; font-weight:700; letter-spacing:.02em; color:var(--adaptiveGrey500); }
+.crew__hand dd{ margin:4px 0 10px; font-size:var(--t7); line-height:1.62; color:var(--adaptiveGrey700); }
+.crew__hand dd:last-child{ margin-bottom:0; }
+@media (prefers-reduced-motion:reduce){
+  .crew__c:hover{ transform:none; }
+  .crew__c:hover .crew__av{ animation:none; }
+}
+
+/* ── 스크롤 등장 ── */
+.rise{ opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
+.rise.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .rise{ opacity:1; transform:none; transition:none; }
+  .tool__meter i{ transition:none; transition-delay:0s; }
+  html{ scroll-behavior:auto; }
+  .btn:hover,.card:hover{ transform:none; }
+}
+
+/* ── 인쇄 ── */
+@media print{
+  .nav,.watermark,.cover__acts,.closing__acts{ display:none; }
+  body{ background:#fff; }
+  .sec{ padding-block:28px; break-inside:avoid; }
+  .cover,.divider,.closing{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
 </style>
-</helmet>
+</head>
+<body>
 
-<div style="position:fixed;top:0;left:0;height:3px;width:0;background:#A6462B;z-index:60" data-prog></div>
+<!-- 워터마크 : 제안서 전 페이지 우상단 규칙 -->
+<div class="watermark" id="wm">박세훈 · WEB/APP Business PM</div>
 
-<div ref="{{ setRoot }}" style="display:grid;grid-template-columns:300px minmax(0,1fr);align-items:start;max-width:1440px;margin:0 auto">
+<nav class="nav">
+  <div class="nav__in">
+    <span class="nav__name">박세훈 · 포트폴리오</span>
+    <div class="nav__links">
+      <a href="#about"><span class="n">01</span>소개</a>
+      <a href="#projects"><span class="n">02</span>프로젝트</a>
+      <a href="#deliverables"><span class="n">03</span>산출물</a>
+      <a href="#management"><span class="n">04</span>사업관리</a>
+      <a href="#strengths"><span class="n">05</span>특장점</a>
+      <a href="#closing"><span class="n">06</span>맺음말</a>
+    </div>
+    <div class="nav__acts">
+      <a class="btn btn--primary-weak" href="portfolio.pdf" target="_blank" rel="noopener">PDF 버전 내려받기</a>
+      <a class="btn btn--primary-fill nav__acts--wide" href="../">지원서 페이지로</a>
+    </div>
+  </div>
+</nav>
 
-  <aside style="position:sticky;top:0;max-height:100vh;overflow-y:auto;box-sizing:border-box;padding:44px 40px 36px 60px;display:flex;flex-direction:column;gap:44px;justify-content:space-between">
-    <div>
-      <div style="font-size:26px;font-weight:700;letter-spacing:-.03em">박세훈</div>
-      <div style="margin-top:8px;font-size:14px;color:#8A8681">WEB/APP 기획 및 사업 관리</div>
-      <nav style="margin-top:52px;display:flex;flex-direction:column;gap:2px">
-        <a href="#s1" data-nav="s1" style="display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;padding:12px 0 12px 14px;border-left:2px solid #E7E3DD;font-size:15px;font-weight:600;color:#8A8681;transition:all .25s ease"><span style="font-size:12px;letter-spacing:.1em">01</span>소개</a>
-        <a href="#s2" data-nav="s2" style="display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;padding:12px 0 12px 14px;border-left:2px solid #E7E3DD;font-size:15px;font-weight:600;color:#8A8681;transition:all .25s ease"><span style="font-size:12px;letter-spacing:.1em">02</span>프로젝트</a>
-        <a href="#s3" data-nav="s3" style="display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;padding:12px 0 12px 14px;border-left:2px solid #E7E3DD;font-size:15px;font-weight:600;color:#8A8681;transition:all .25s ease"><span style="font-size:12px;letter-spacing:.1em">03</span>산출물</a>
-        <a href="#s4" data-nav="s4" style="display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;padding:12px 0 12px 14px;border-left:2px solid #E7E3DD;font-size:15px;font-weight:600;color:#8A8681;transition:all .25s ease"><span style="font-size:12px;letter-spacing:.1em">04</span>특장점</a>
-        <a href="#s5" data-nav="s5" style="display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;padding:12px 0 12px 14px;border-left:2px solid #E7E3DD;font-size:15px;font-weight:600;color:#8A8681;transition:all .25s ease"><span style="font-size:12px;letter-spacing:.1em">05</span>맺음말</a>
-      </nav>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:40px;max-width:200px">
-        <a href="portfolio.pdf" download style="display:flex;align-items:center;gap:7px;padding:12px 16px;background:#1A1A1A;color:#FBFAF8;font-size:13px;font-weight:600;white-space:nowrap;transition:background .2s ease" style-hover="background:#A6462B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>PDF 다운로드</a>
-        <a href="../" style="display:flex;align-items:center;justify-content:space-between;gap:7px;padding:12px 16px;border:1px solid #D6D0C7;color:#1A1A1A;font-size:13px;font-weight:600;white-space:nowrap;transition:all .2s ease" style-hover="border-color:#1A1A1A">지원서 페이지로 이동<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"></path><path d="M12 5l7 7-7 7"></path></svg></a>
+<!-- ═══ [A] 표지 ═══ -->
+<header class="cover" data-dark>
+  <div class="cover__in wrap">
+    <p class="cover__eyebrow">Portfolio · 2026. 8.</p>
+    <h1>박세훈</h1>
+    <p class="cover__role">WEB/APP 기획 및 사업 관리</p>
+    <p class="cover__sub">Web / App Business PM Portfolio</p>
+    <p class="cover__lead">
+      웹·앱과 이커머스에서 기획 PL로 사업을 맡아 왔습니다.<br>
+      요구 정의부터 <b>일정 관리, 검수와 정산까지 사업 단위로 책임지는</b> PM으로 일하고 싶습니다.
+    </p>
+    <div class="cover__acts">
+      <a class="btn btn--light-fill" href="portfolio.pdf" target="_blank" rel="noopener">PDF 버전 내려받기</a>
+      <a class="btn btn--light-weak" href="../">지원서 페이지로</a>
+    </div>
+    <div class="cover__meta">
+      <span>경력 <b>4년 5개월</b></span>
+      <span>사업 규모 <b>5,000만원 ~ 1억원</b></span>
+      <span><b>sun8070vvv20@gmail.com</b></span>
+      <span><b>010-7222-0473</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ 01 소개 ═══ -->
+<section class="sec" id="about" style="background:var(--adaptiveBackgroundLevelB01)">
+  <div class="wrap">
+    <div class="shead shead--ruled rise">
+      <span class="shead__no">01</span>
+      <h2>공공·문화 포털과 면세 이커머스에서<br><em>기획 PL</em>로 일했습니다</h2>
+      <p>5,000만원부터 1억원 미만 규모의 사업을 맡아 <b>요구사항 접수부터 일정 관리, 검수와 정산까지</b> 책임졌고, 관리자 시스템을 직접 설계해 이벤트와 쿠폰 발급을 운영했습니다.</p>
+    </div>
+
+    <h3 class="blk-h rise">인적사항</h3>
+    <dl class="dl dl--plain rise" style="margin-bottom:var(--s7)">
+      <dt>이름</dt><dd>박세훈 · Park Sehoon</dd>
+      <dt>생년월일</dt><dd>1993. 6. 1.</dd>
+      <dt>경력</dt><dd>4년 5개월 · 서비스 기획 PL · 사업 관리</dd>
+      <dt>지원 분야</dt><dd>WEB/APP 기획 및 사업 관리 PM</dd>
+      <dt>학력</dt><dd>울산대학교 졸업 (2012.03–2020.02)</dd>
+      <dt>병역</dt><dd>육군 만기전역 (2013.04–2015.01)</dd>
+      <dt>이메일</dt><dd>sun8070vvv20@gmail.com</dd>
+      <dt>휴대폰</dt><dd>010-7222-0473</dd>
+    </dl>
+
+    <h3 class="blk-h rise">활용 툴</h3>
+    <div class="rise" style="margin-bottom:var(--s6)">
+      <div class="tools">
+          <div class="tool"><img src="images/icons/ppt.png" alt=""><div class="tool__n">PowerPoint<br>Slides</div><div class="tool__meter" role="img" aria-label="숙련도 상"><i style="--lv:90%"></i></div><div class="tool__lv">상</div></div>
+          <div class="tool"><img src="images/icons/hwp.png" alt=""><div class="tool__n">한글 · Word</div><div class="tool__meter" role="img" aria-label="숙련도 상"><i style="--lv:90%"></i></div><div class="tool__lv">상</div></div>
+          <div class="tool"><img src="images/icons/slack.png" alt=""><div class="tool__n">Slack</div><div class="tool__meter" role="img" aria-label="숙련도 상"><i style="--lv:90%"></i></div><div class="tool__lv">상</div></div>
+          <div class="tool tool--mid"><img src="images/icons/excel.png" alt=""><div class="tool__n">Excel · Sheets</div><div class="tool__meter" role="img" aria-label="숙련도 중"><i style="--lv:65%"></i></div><div class="tool__lv">중</div></div>
+          <div class="tool tool--mid"><img src="images/icons/figma.png" alt=""><div class="tool__n">Figma</div><div class="tool__meter" role="img" aria-label="숙련도 중"><i style="--lv:65%"></i></div><div class="tool__lv">중</div></div>
+          <div class="tool tool--mid"><img src="images/icons/vscode.png" alt=""><div class="tool__n">VS Code</div><div class="tool__meter" role="img" aria-label="숙련도 중"><i style="--lv:65%"></i></div><div class="tool__lv">중</div></div>
+          <div class="tool tool--mid"><img src="images/icons/claude.png" alt=""><div class="tool__n">생성형 AI</div><div class="tool__meter" role="img" aria-label="숙련도 중"><i style="--lv:65%"></i></div><div class="tool__lv">중</div></div>
+      </div>
+      <ul class="foot-note">
+        <li>설계 · 문서 · 협업 · 구현 도구를 실무 기준으로 표기했습니다.</li>
+        <li>AI는 문서 작성과 바이브 코딩에 상시 활용합니다.</li>
+      </ul>
+    </div>
+
+    <!-- [C] 순서 도식 — 화살표 적층, 색 농도 진행 -->
+    <h3 class="blk-h rise">경력 — 실무에서 사업 관리로<span class="blk-h__badge">4년 5개월</span></h3>
+    <div class="flow rise">
+      <div class="flow__steps">
+        <div class="flow__step">① 실무 기획<small>2021.07 – 2023.06</small></div>
+        <div class="flow__step">② 운영 기획<small>2024.01 – 2024.11</small></div>
+        <div class="flow__step">③ 기획 PL<small>2025.02 – 현재</small></div>
+        <div class="flow__step">④ 사업 관리<small>담당 전 프로젝트</small></div>
+      </div>
+      <div class="flow__descs">
+        <div class="flow__desc">
+          <h4>업무 시스템과 공공 홈페이지의 서비스 기획 실무</h4>
+          <p class="org">(주)이노컴즈 · 주임 &nbsp;|&nbsp; 2021. 7. ~ 2023. 6.</p>
+          <p>출입증 시스템과 전자결재 업무 시스템 등 폐쇄형 시스템의 화면과 API 연계를 기획했고, 공공 홈페이지 반응형 리뉴얼의 화면정의서를 작성했습니다.</p>
+          <ul class="chev"><li>화면정의서</li><li>API 연계</li><li>반응형 리뉴얼</li></ul>
+        </div>
+        <div class="flow__desc">
+          <h4>면세 이커머스 운영 기획 및 프로모션 이벤트 기획</h4>
+          <p class="org">(주)그라비티 네오싸이언 · 대리 &nbsp;|&nbsp; 2024. 1. ~ 2024. 11.</p>
+          <p>상품 노출과 구매 흐름을 중심으로 사용자·관리자 화면 운영을 기획했습니다. 참여형 프로모션의 참여 조건과 회차 제한, 당첨 판정 규칙을 정하고 쿠폰·포인트 지급 규칙과 중복 지급·기간 만료 예외를 정의했습니다.</p>
+          <ul class="chev"><li>프로모션 설계</li><li>쿠폰·포인트</li><li>구매 흐름</li></ul>
+        </div>
+        <div class="flow__desc">
+          <h4>공공·문화 포털의 유지보수 · 고도화 · 재구축</h4>
+          <p class="org">(주)이노디스 · 웹서비스팀 기획 PL &nbsp;|&nbsp; 2025. 2. ~ 현재</p>
+          <p>사업 금액 5,000만원~1억원 미만 구간의 공기관 사업을 맡아 요구사항 접수부터 검수·정산까지 운영했습니다. WBS로 사업 일정과 소속 기획자의 업무를 함께 관리했고, 구축 이후의 상시 운영과 고도화도 이어서 담당했습니다.</p>
+          <ul class="chev"><li>WBS 일정 관리</li><li>검수·정산</li><li>상시 운영</li><li>고도화</li></ul>
+        </div>
+        <div class="flow__desc">
+          <h4>담당 프로젝트 전부에서 사업 관리를 맡았습니다</h4>
+          <p class="org">공통 업무 &nbsp;|&nbsp; 프로젝트와 무관하게 늘 맡아 온 일</p>
+          <p>기획서·WBS 등 문서 작업, 내부 기안 처리 및 계약 문서 작성, 고객과의 커뮤니케이션을 상시로 담당했습니다.</p>
+          <ul class="chev"><li>기획서 · WBS</li><li>기안 · 계약 문서</li><li>고객 커뮤니케이션</li></ul>
+        </div>
       </div>
     </div>
-    <div style="font-size:13px;line-height:1.95;color:#8A8681">
-      sun8070vvv20@gmail.com<br>010-7222-0473<br>2026. 8.
+  </div>
+</section>
+
+<!-- ═══ [B] 간지 ═══ -->
+<section class="divider" data-dark>
+  <div class="divider__in wrap">
+    <p class="divider__no">02 &nbsp;/&nbsp; PROJECTS</p>
+    <h2>프로젝트</h2>
+  </div>
+</section>
+
+<!-- ═══ 02 프로젝트 ═══ -->
+<section class="sec" id="projects" style="background:var(--adaptiveBackground)">
+  <div class="wrap">
+    <div class="shead shead--ruled rise">
+      <h2>대표 프로젝트 <em>4건</em></h2>
+      <p>프로젝트별로 담당한 업무와 주요 작업을 정리했습니다.</p>
     </div>
-  </aside>
 
-  <main style="padding:0 76px 0 0">
+    <!-- ── 01 서울영화센터 ── -->
+    <article class="proj rise">
+      <span class="stepbadge">① 서울영화센터 포털 재구축</span>
+      <div class="proj__head">
+        <p class="proj__claim"><em>이용자 유입</em>을 늘리다</p>
+        <p class="proj__sub">예술 포털 · 연 8천만원 &nbsp;|&nbsp; 4개 영역 재구축 · 통계/쿠폰 관리 페이지 신설</p>
+        <div class="tags">
+          <span class="tag tag--key">라이브 운영</span><span class="tag">쿠폰 동기화</span>
+          <span class="tag">상태 설계</span><span class="tag">CMS 신규</span><span class="tag">연간 패스</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <figure class="shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/%EC%84%9C%EC%9A%B8%EC%98%81%ED%99%94%EC%84%BC%ED%84%B0.png" alt="서울영화센터 포털 화면" loading="lazy">
+        </figure>
+        <div class="points">
+          <div class="point"><span class="point__ico">01</span><p><b>대관·교육·메인·예매</b> 4개 영역을 재구축해 포털 전반의 이용 흐름을 다시 설계</p></div>
+          <div class="point"><span class="point__ico">02</span><p><span class="hl">일·월·년 단위 통계 페이지</span>를 신설해 유입 연령대와 방문 시간대를 파악</p></div>
+          <div class="point"><span class="point__ico">03</span><p><b>기획전</b>을 신설하고 <b>연간 패스</b> 상품을 기획·운영해 재방문 동기를 설계</p></div>
+          <div class="result">고객사와 논의해 지속적인 유지보수를 이어가며 유입 인원 <b>2025년 대비 50% 상승</b></div>
+        </div>
+      </div>
 
-    <header style="box-sizing:border-box;display:flex;flex-direction:column;padding:56px 0 56px;position:relative">
-      <div style="font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#A6462B">Web/App Business PM Portfolio</div>
-      <h1 style="margin:34px 0 0;font-size:40px;font-weight:700;line-height:1.5;letter-spacing:-.035em;max-width:19em;text-wrap:pretty">웹·앱과 이커머스에서 기획 PL로 사업을 맡아 온 경험을 바탕으로, <span style="color:#A6462B">기획부터 검수·정산까지 책임지는</span> PM으로 일하고 싶습니다.</h1>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:44px;padding-top:24px;border-top:1px solid #1A1A1A">
-        <div><div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A8681">Career</div><div style="margin-top:10px;font-size:32px;font-weight:700;letter-spacing:-.04em">4년 5개월</div></div>
-        <div><div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A8681">Projects</div><div style="margin-top:10px;font-size:32px;font-weight:700;letter-spacing:-.04em">4건</div></div>
-        <div><div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A8681">Scale</div><div style="margin-top:10px;font-size:32px;font-weight:700;letter-spacing:-.04em">~1억원</div></div>
-        <div><div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A8681">Field</div><div style="margin-top:10px;font-size:32px;font-weight:700;letter-spacing:-.04em">기획·운영</div></div>
+      <!-- [G] AS-IS / TO-BE 명암 반전 -->
+      <div class="compare">
+        <div class="compare__side compare__side--as">
+          <p class="compare__tag">AS-IS · 하드코딩 발급</p>
+          <h4>쿠폰 하나 바꾸는 데<br>개발자가 필요했습니다</h4>
+          <ul class="compare__list">
+            <li>쿠폰 발급 로직이 코드에 박혀 있음</li>
+            <li>혜택을 바꾸려면 배포를 기다려야 함</li>
+            <li>운영자가 직접 손댈 수 있는 화면 없음</li>
+            <li>외부 예매처 쿠폰과 내부 데이터가 어긋남</li>
+          </ul>
+        </div>
+        <div class="compare__arrow">→</div>
+        <div class="compare__side compare__side--to">
+          <p class="compare__tag">TO-BE · CMS 관리 페이지</p>
+          <h4>운영자가 직접<br>쿠폰 상품을 구성합니다</h4>
+          <ul class="compare__list">
+            <li>CMS 관리 페이지에서 발급 규칙을 설정</li>
+            <li>배포 없이 이벤트 혜택을 즉시 변경</li>
+            <li>쿠폰 상품을 직접 구성하도록 기획</li>
+            <li>외부 예매 쿠폰 동기화 설계로 정합성 확보</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 02 서울영테크 ── -->
+    <article class="proj rise">
+      <span class="stepbadge">② 서울영테크 청년 재무상담 포털</span>
+      <div class="proj__head">
+        <p class="proj__claim">신청자 유형을 <em>그룹핑</em>하다</p>
+        <p class="proj__sub">공공 서비스 · 연 1억원 &nbsp;|&nbsp; 상담 4단계 절차 화면 구축</p>
+        <div class="tags">
+          <span class="tag tag--key">사업 관리</span><span class="tag">운영</span><span class="tag">신청자 분석</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <figure class="shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/%EC%98%81%ED%85%8C%ED%81%AC.png" alt="서울영테크 청년 재무상담 포털 화면" loading="lazy">
+        </figure>
+        <div class="points">
+          <div class="point"><span class="point__ico">01</span><p>다양한 신청자의 유형을 <b>경험 및 데이터로 분석</b>하여 그룹핑 진행</p></div>
+          <div class="point"><span class="point__ico">02</span><p><span class="hl">상담 신청 → 상담사 배정 → 상담 진행 → 상담 완료</span> 4단계 절차 화면을 구축</p></div>
+          <div class="point"><span class="point__ico">03</span><p>운영 단계에서 <b>다양한 직종·연령층</b>을 접하며 상담 유형별 <b>그룹 강의</b>를 제시</p></div>
+          <div class="result">월 4회이던 강의를 <b>월 8회까지 확대</b></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 03 국립부여박물관 ── -->
+    <article class="proj rise">
+      <span class="stepbadge">③ 국립부여박물관 누리집 개편·고도화</span>
+      <div class="proj__head">
+        <p class="proj__claim"><em>사업</em>을 관리하다</p>
+        <p class="proj__sub">공공·문화 · 5,000만원 + 고도화 2건 2천만원 &nbsp;|&nbsp; 3사 연동 일정 조율 · 발권 현황 노출</p>
+        <div class="tags">
+          <span class="tag tag--key">사업 관리</span><span class="tag">요구 명세</span>
+          <span class="tag">대안 비교</span><span class="tag">데이터 설계</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <figure class="shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/%EA%B5%AD%EB%A6%BD%EB%B6%80%EC%97%AC.png" alt="국립부여박물관 누리집 화면" loading="lazy">
+        </figure>
+        <div class="points">
+          <div class="point"><span class="point__ico">01</span><p>외부 키오스크 연동 작업에 <b>3개 고객사·협력사가 얽혀</b> 각자의 사정으로 일정이 모이지 않던 상황</p></div>
+          <div class="point"><span class="point__ico">02</span><p><span class="hl">WBS로 작업 일정을 통보</span>해 외부 변수와 무관하게 내부 일정을 관리</p></div>
+          <div class="point"><span class="point__ico">03</span><p>예약 페이지 바로가기를 추가해 <b>발권 현황</b>을 파악하게 함</p></div>
+          <div class="result">주말 매진율 <b>60% → 80%</b> · 기능 추가 제안으로 <b>고도화 계약 2건</b> 성사</div>
+        </div>
+      </div>
+
+      <!-- [J] 스윔레인 프로세스 -->
+      <div class="swim">
+        <div class="swim__grid">
+          <div class="swim__who swim__who--me"><span>🧑‍💻</span>내가<br>맡은 일</div>
+          <div class="swim__lane swim__lane--me">
+            <div class="swim__box">요구사항 접수<small>고객사 · 협력사</small></div>
+            <div class="arw">→</div>
+            <div class="swim__box">WBS 수립<small>일정 통보</small></div>
+            <div class="arw arw--dot">⋯</div>
+            <div class="swim__box">진행 관리<small>기획자 업무 배분</small></div>
+            <div class="arw">→</div>
+            <div class="swim__box">검수 · 정산<small>고도화 제안</small></div>
+          </div>
+          <div class="swim__who swim__who--them"><span>🏛️</span>외부<br>3사</div>
+          <div class="swim__lane swim__lane--them">
+            <div class="swim__box">박물관 요구 정리</div>
+            <div class="arw arw--dot">⋯</div>
+            <div class="swim__box">키오스크사 일정</div>
+            <div class="arw arw--dot">⋯</div>
+            <div class="swim__box">예매사 연동 확인</div>
+            <div class="arw">→</div>
+            <div class="swim__box">연동 완료</div>
+          </div>
+        </div>
+        <p class="swim__note"><b>실선</b>은 제가 통제한 일정, <b>점선</b>은 외부 사정에 달린 일정입니다. 점선 구간을 기다리지 않고 <b>WBS로 먼저 통보</b>해 내부 일정을 굴린 것이 이 사업의 핵심이었습니다.</p>
+      </div>
+    </article>
+
+    <!-- ── 04 신세계DF ── -->
+    <article class="proj rise">
+      <span class="stepbadge">④ 신세계DF 면세 이커머스</span>
+      <div class="proj__head">
+        <p class="proj__claim">대형 이커머스를 <em>경험</em>하다</p>
+        <p class="proj__sub">이커머스 &nbsp;|&nbsp; 면세 이커머스 운영 기획 및 프로모션 이벤트 기획</p>
+        <div class="tags">
+          <span class="tag tag--key">운영 기획</span><span class="tag">프로모션</span>
+          <span class="tag">쿠폰·포인트</span><span class="tag">구매 흐름</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <figure class="shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/%EC%8B%A0%EC%84%B8%EA%B3%84%20%EC%9D%B4%EB%B2%A4%ED%8A%B8.png" alt="신세계DF 프로모션 이벤트 화면" loading="lazy">
+        </figure>
+        <div class="points">
+          <div class="point"><span class="point__ico">01</span><p>상품 노출부터 주문·결제까지 <b>구매 흐름을 점검</b>해 개선안을 정리</p></div>
+          <div class="point"><span class="point__ico">02</span><p>참여형 프로모션의 <span class="hl">참여 조건과 회차 제한, 당첨 판정 규칙</span>을 설계</p></div>
+          <div class="point"><span class="point__ico">03</span><p>쿠폰·포인트 지급 규칙과 <b>중복 지급·기간 만료 예외</b>를 정의</p></div>
+          <div class="result">실무 라인이라 사업 관리 주체는 아니었으나, <b>판매와 BM을 상세하게 볼 수 있었던 경험</b></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ═══ [B] 간지 ═══ -->
+<section class="divider" data-dark>
+  <div class="divider__in wrap">
+    <p class="divider__no">03 &nbsp;/&nbsp; DELIVERABLES</p>
+    <h2>산출물</h2>
+  </div>
+</section>
+
+<!-- ═══ 03 산출물 ═══ -->
+<section class="sec" id="deliverables" style="background:var(--adaptiveBackground)">
+  <div class="wrap">
+    <div class="shead shead--ruled rise">
+      <h2>작성해 온 문서를<br><em>기획 · 데이터 · 관리</em> 세 갈래로 정리했습니다</h2>
+      <p>아래 샘플 세 장은 각각 <b>기획서 · WBS · 플로우차트</b>를 대표하는 발췌본입니다.</p>
+    </div>
+
+    <div class="kinds rise">
+      <div class="kind"><h4>기획 문서</h4><ul><li>화면기획서 · 화면정의서</li><li>요구사항정의서</li><li>정책 문서</li></ul></div>
+      <div class="kind"><h4>데이터 문서</h4><ul><li>API 연계 기획서</li><li>테이블 · 컬럼 정의</li><li>지표 화면 명세</li></ul></div>
+      <div class="kind"><h4>관리 문서</h4><ul><li>WBS · 일정 관리</li><li>유지보수 보고서</li><li>기안 · 계약 문서</li></ul></div>
+    </div>
+
+    <div class="cards cards--3 rise">
+      <figure class="card doccard">
+        <div class="doccard__shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/work-screen.png" alt="화면기획서 발췌 — 환불계좌 등록 모달" loading="lazy">
+        </div>
+        <figcaption class="doccard__txt">
+          <p class="doccard__kind">기획 문서</p>
+          <p class="doccard__name">환불계좌 등록 모달 정의</p>
+          <p class="doccard__desc">화면 요소마다 동작·검증 규칙·예외를 번호로 지목해 개발자가 되묻지 않아도 되게 작성합니다.</p>
+          <button type="button" class="btn btn--primary-weak btn--sm doccard__more" data-doc-open aria-haspopup="dialog">
+            화면설계서 상세보기<span aria-hidden="true">→</span>
+          </button>
+        </figcaption>
+      </figure>
+      <figure class="card doccard">
+        <div class="doccard__shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/work-wbs.png" alt="WBS 발췌 — 사업 일정과 담당 배분" loading="lazy">
+        </div>
+        <figcaption class="doccard__txt">
+          <p class="doccard__kind">관리 문서</p>
+          <p class="doccard__name">사업 일정과 담당 배분</p>
+          <p class="doccard__desc">사업 일정과 소속 기획자의 업무를 한 장에서 관리합니다. 외부 변수가 있는 구간을 분리해 통보 기준으로 씁니다.</p>
+        </figcaption>
+      </figure>
+      <figure class="card doccard">
+        <div class="doccard__shot">
+          <span class="samplebadge">예시</span>
+          <img src="images/work-data.png" alt="플로우차트 발췌 — 대관 신청 승인·입금 흐름" loading="lazy">
+        </div>
+        <figcaption class="doccard__txt">
+          <p class="doccard__kind">데이터 문서</p>
+          <p class="doccard__name">대관 신청 승인·입금 흐름</p>
+          <p class="doccard__desc">신청·승인·반려·취소 상태 전이와 입금 확인 시점을 분기로 확정해 운영 판단이 갈리지 않게 합니다.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ [B] 간지 ═══ -->
+<section class="divider" data-dark>
+  <div class="divider__in wrap">
+    <p class="divider__no">04 &nbsp;/&nbsp; MANAGEMENT</p>
+    <h2>사업 관리</h2>
+  </div>
+</section>
+
+<!-- ═══ 04 사업 관리 ═══ -->
+<section class="sec" id="management" style="background:var(--adaptiveBackground)">
+  <div class="wrap">
+    <div class="shead shead--ruled rise">
+      <span class="shead__no">04</span>
+      <h2>계약 문서와 팀의 일정까지<br><em>사업 단위</em>로 관리합니다</h2>
+      <p>화면만 그리지 않았습니다. <b>계약 · 기안 · 대금청구</b>로 이어지는 행정 절차와, <b>디자이너 · 프로그래머의 주간 작업 배분</b>을 함께 맡아 왔습니다.</p>
+    </div>
+
+    <!-- ── 04-1 계약 관리 ── -->
+    <h3 class="blk-h rise">계약 관리<span class="blk-h__badge">기안 · 대금청구</span></h3>
+    <p class="blk-lead rise">사업이 시작되면 <b>착수계부터 완료계와 정산까지</b> 계약 문서를 직접 작성해 내부 기안으로 상신합니다. 월별 업무보고와 대금청구를 사업별로 나눠 관리해, 청구가 밀리거나 회차가 겹치지 않게 합니다.</p>
+
+    <div class="mgmt rise">
+      <div>
+        <div class="track">
+          <div class="track__i">
+            <p class="track__t"><span class="n">01</span>착수 · 계약 문서</p>
+            <p class="track__d">계약 체결 뒤 착수계와 수행계획을 작성해 제출합니다. 산출물 목록과 검수 기준을 이 단계에서 확정합니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">02</span>월별 업무보고</p>
+            <p class="track__d">그 달에 처리한 유지보수와 고도화 내역을 정리해 보고서로 남깁니다. 다음 달 청구의 근거가 되는 문서입니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">03</span>대금청구 기안</p>
+            <p class="track__d">보고서를 붙여 내부 기안으로 상신합니다. 사업마다 청구 회차와 기간이 달라 건별로 따로 관리합니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">04</span>수정기안 · 재상신</p>
+            <p class="track__d">금액이나 기간이 어긋나면 반려 사유를 반영해 수정기안으로 다시 올립니다. 원 기안과 이력을 함께 남깁니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">05</span>완료계 · 정산</p>
+            <p class="track__d">사업이 끝나면 완료계와 최종 산출물을 제출하고 잔금 청구까지 마무리합니다.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b>3개 사업</b><span>동시 청구 관리</span></div>
+          <div class="stat"><b>18건</b><span>2026년 2~7월 기안</span></div>
+          <div class="stat"><b>월 1회</b><span>업무보고 · 대금청구</span></div>
+        </div>
+      </div>
+
+      <figure class="mgmt__fig">
+        <span class="samplebadge">예시</span>
+        <img src="images/pm-contract.png" alt="내부 기안 목록 발췌 — 사업별 월 업무보고와 대금청구 기안" loading="lazy">
+        <figcaption class="mgmt__cap">내부 기안 목록 발췌 · 국립부여박물관, 자전거행복나눔, 서울영화센터 3개 사업의 월별 업무보고와 대금청구를 직접 상신했습니다. 기안자는 전 건 본인입니다.</figcaption>
+      </figure>
+    </div>
+
+    <!-- ── 04-2 프로젝트 관리 ── -->
+    <h3 class="blk-h rise" style="margin-top:var(--s7)">프로젝트 관리<span class="blk-h__badge">주간 작업 배분</span></h3>
+    <p class="blk-lead rise">한 사람이 여러 사업을 동시에 맡기 때문에 <b>주 단위로 직군별 작업을 쪼개 배분</b>합니다. 기획 산출물이 나오는 순서와 디자이너 · 프로그래머가 착수할 수 있는 시점을 맞춰, 서로 기다리는 시간을 줄이는 것이 기획 PL의 일이라고 생각합니다.</p>
+
+    <div class="crew rise">
+      <article class="crew__c">
+        <svg class="crew__av" viewBox="0 0 96 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="디자이너 캐릭터">
+          <circle cx="48" cy="44" r="40" fill="#e8f3ff"/>
+          <path d="M12 112c0-18 16-30 36-30s36 12 36 30z" fill="#4593fc"/>
+          <path d="M40 82h16l-8 12z" fill="#e8f3ff"/>
+          <rect x="42" y="66" width="12" height="18" rx="6" fill="#f0c49c"/>
+          <circle cx="48" cy="50" r="22" fill="#f7d5b4"/>
+          <path d="M26 50a22 22 0 0144 0c-1.8-5-5.6-8.4-10.8-9.6-3.8-.9-7 1.4-11.2 1.4s-7.4-2.3-11.2-1.4C31.6 41.6 27.8 45 26 50z" fill="#4e5968"/>
+          <path d="M27.2 44.6c-2.6 8-2.6 16.4-.8 24.4l5.6-1.2c-1.6-7.2-1.6-14.6.4-21.4z" fill="#4e5968"/>
+          <path d="M68.8 44.6c2.6 8 2.6 16.4.8 24.4l-5.6-1.2c1.6-7.2 1.6-14.6-.4-21.4z" fill="#4e5968"/>
+          <circle cx="41" cy="52" r="2.2" fill="#191f28"/>
+          <circle cx="55" cy="52" r="2.2" fill="#191f28"/>
+          <path d="M44 60c2.5 2.6 5.5 2.6 8 0" stroke="#191f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="76" cy="86" r="16" fill="#fff" stroke="#90c2ff" stroke-width="2"/>
+          <g transform="translate(76 86) rotate(-40)">
+            <rect x="-2.6" y="-11" width="5.2" height="3" rx="1.2" fill="#1957c2"/>
+            <rect x="-2.6" y="-7.4" width="5.2" height="12" rx="1.4" fill="#3182f6"/>
+            <path d="M-2.6 4.6 0 9.6 2.6 4.6z" fill="#1b64da"/>
+          </g>
+        </svg>
+        <div>
+          <span class="crew__role">디자이너 · 퍼블리셔</span>
+          <p class="crew__n">화면을 실제로 보이게 만드는 사람</p>
+          <p class="crew__d">기획서의 구조를 시안과 마크업으로 옮깁니다. 반응형 분기와 컴포넌트 재사용 범위를 함께 정해 두면 뒤에서 화면이 어긋나지 않습니다.</p>
+          <dl class="crew__hand">
+            <dt>내가 넘기는 것</dt>
+            <dd>화면설계서 · 스타일 가이드 · 반응형 분기 기준</dd>
+            <dt>받아서 확인하는 것</dt>
+            <dd>디자인 시안 · 퍼블리싱 산출물 · 브라우저 확인 결과</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="crew__c">
+        <svg class="crew__av" viewBox="0 0 96 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="프로그래머 캐릭터">
+          <circle cx="48" cy="44" r="40" fill="#e8f3ff"/>
+          <path d="M12 112c0-18 16-30 36-30s36 12 36 30z" fill="#1b64da"/>
+          <path d="M40 82h16l-8 12z" fill="#e8f3ff"/>
+          <rect x="42" y="66" width="12" height="18" rx="6" fill="#f0c49c"/>
+          <circle cx="48" cy="50" r="22" fill="#f7d5b4"/>
+          <path d="M26 50a22 22 0 0144 0c0 1.9-.6 3.2-1.5 3.8-1.3-6.8-5.8-10.8-10.9-10.8-3.7 0-5.8 1.4-10.3 1.4s-6.6-1.4-10.3-1.4c-5.1 0-9.6 4-10.9 10.8-.9-.6-1.5-1.9-1.5-3.8z" fill="#333d4b"/>
+          <circle cx="41" cy="52" r="2.2" fill="#191f28"/>
+          <circle cx="55" cy="52" r="2.2" fill="#191f28"/>
+          <path d="M44 60c2.5 2.6 5.5 2.6 8 0" stroke="#191f28" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="76" cy="86" r="16" fill="#fff" stroke="#90c2ff" stroke-width="2"/>
+          <path d="M71.5 81 66.5 86l5 5" stroke="#3182f6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M80.5 81l5 5-5 5" stroke="#3182f6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M78 79.5 74 92.5" stroke="#90c2ff" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <span class="crew__role">프로그래머 · 개발</span>
+          <p class="crew__n">규칙을 동작으로 만드는 사람</p>
+          <p class="crew__d">화면 뒤의 처리 규칙을 구현합니다. 예외와 상태 전이가 문서에 없으면 되묻게 되므로, 분기까지 미리 못 박아 전달합니다.</p>
+          <dl class="crew__hand">
+            <dt>내가 넘기는 것</dt>
+            <dd>기능 정의 · 데이터와 API 명세 · 예외 처리 규칙</dd>
+            <dt>받아서 확인하는 것</dt>
+            <dd>개발 완료 기능 · 연동 테스트 결과 · 반영 내역</dd>
+          </dl>
+        </div>
+      </article>
+    </div>
+
+    <ul class="foot-note rise" style="margin-top:var(--s3)">
+      <li>직군 구성은 사업 규모에 따라 달라지며, 위 두 직군은 담당 사업에서 항상 함께 일한 구성입니다.</li>
+    </ul>
+
+    <div class="mgmt rise" style="margin-top:var(--s5)">
+      <div>
+        <div class="track">
+          <div class="track__i">
+            <p class="track__t"><span class="n">01</span>주간 계획 수립</p>
+            <p class="track__d">사업별 일정과 마감을 주 단위로 쪼개 현황판에 올립니다. 이번 주에 끝나야 하는 것과 다음 주로 넘길 것을 먼저 가릅니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">02</span>직군별 배분</p>
+            <p class="track__d">기획 · 디자인 · 퍼블리싱 · 개발 순서로, 선행 산출물이 나오는 시점에 맞춰 작업을 배정합니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">03</span>진행 점검</p>
+            <p class="track__d">날짜 칸으로 진행 상황을 확인하고, 밀린 작업은 사유를 적어 다음 날로 옮깁니다. 외부 변수가 있는 구간은 따로 표시해 통보 기준으로 씁니다.</p>
+          </div>
+          <div class="track__i">
+            <p class="track__t"><span class="n">04</span>검수 · 공유</p>
+            <p class="track__d">완료된 작업을 검수하고 주간 보고 자료로 정리해 고객사와 공유합니다. 다음 주 계획의 출발점이 됩니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="mgmt__fig">
+        <span class="samplebadge">예시</span>
+        <img src="images/pm-schedule.png" alt="주간 업무 현황판 발췌 — 담당자별 프로젝트와 날짜별 작업 배분" loading="lazy">
+        <figcaption class="mgmt__cap">주간 업무 현황판 발췌 · 담당자명과 프로젝트명은 가린 상태입니다. 날짜 칸마다 디자인 · 퍼블리싱 · 개발 작업을 나눠 적어 한 장에서 관리합니다.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 특장점 ═══ -->
+<section class="sec" id="strengths" style="background:var(--adaptiveBackgroundLevelB01)">
+  <div class="wrap">
+    <div class="shead shead--ruled rise">
+      <span class="shead__no">05</span>
+      <h2>사업 단위로 맡아 온 일을<br><em>여섯 가지 역량</em>으로 정리했습니다</h2>
+      <p>각 항목에 <b>무엇을 하는지</b>와 <b>왜 그렇게 하는지</b>를 함께 적었습니다.</p>
+    </div>
+
+    <div class="cards cards--3 rise">
+      <div class="card">
+        <p class="card__no">01</p>
+        <p class="card__copy"><em>사업 관리</em> · 검수와 정산</p>
+        <p class="card__desc">기획 PL로 사업 하나를 통째로 맡습니다. 요구사항 접수, WBS 일정 수립, 소속 기획자 업무 배분, 검수와 정산까지 사업 단위로 책임집니다.</p>
+        <p class="card__why">담당자가 갈리면 책임도 갈립니다. 한 사람이 끝까지 들고 가야 일정이 밀리지 않습니다.</p>
+      </div>
+      <div class="card">
+        <p class="card__no">02</p>
+        <p class="card__copy"><em>이벤트 · 쿠폰</em> 운영 설계</p>
+        <p class="card__desc">참여 조건과 회차 제한, 당첨 판정 규칙을 정하고 쿠폰·포인트 지급 규칙과 중복 지급·기간 만료 예외를 정의합니다. 외부 시스템이 발급한 쿠폰을 내부 데이터와 맞추는 동기화도 설계했습니다.</p>
+        <p class="card__why">예외를 미리 못 박지 않으면 이벤트가 끝난 뒤에 정산에서 터집니다.</p>
+      </div>
+      <div class="card">
+        <p class="card__no">03</p>
+        <p class="card__copy"><em>라이브 운영</em>과 정책 확정</p>
+        <p class="card__desc">돌아가는 서비스를 상시 운영하며 고도화합니다. 기존 기능을 바꿔야 할 때는 영향 범위를 전수 확인하고 대안을 비교한 뒤 정책 항목으로 확정해 문서로 남깁니다.</p>
+        <p class="card__why">운영 중인 서비스는 되돌릴 수 없습니다. 바꾸기 전에 범위를 다 봐야 합니다.</p>
+      </div>
+      <div class="card">
+        <p class="card__no">04</p>
+        <p class="card__copy">관리자 시스템<em>(CMS·BO)</em> 설계</p>
+        <p class="card__desc">운영자가 실제로 쓸 화면을 설계합니다. 신청·승인·반려·취소 상태 흐름과 전용 테이블, 목록 검색 조건, 일괄 처리, 권한 구분과 내려받기 규칙을 포함합니다.</p>
+        <p class="card__why">관리자 화면이 불편하면 운영자가 엑셀로 도망갑니다. 그 순간 데이터가 갈라집니다.</p>
+      </div>
+      <div class="card">
+        <p class="card__no">05</p>
+        <p class="card__copy"><em>지표 화면</em>과 데이터 연계</p>
+        <p class="card__desc">쌓인 데이터를 운영이 볼 수 있는 통계 화면으로 만듭니다. 화면이 쓰는 데이터를 테이블과 컬럼 단위로 정의하고, 외부 시스템과 주고받는 항목의 명세를 작성합니다.</p>
+        <p class="card__why">숫자가 안 보이면 다음 사업을 감으로 제안하게 됩니다.</p>
+      </div>
+      <div class="card">
+        <p class="card__no">06</p>
+        <p class="card__copy"><em>AI 활용</em> · 문서와 바이브 코딩</p>
+        <p class="card__desc">문서 작업에 AI를 적극 사용해 반복되는 단순 작업 시간을 줄였습니다. 서브에이전트로 분업하고, 하네스·스킬로 코드·문서 산출물의 규격을 일원화했습니다.</p>
+        <p class="card__why">계획 → 검토 → 구현 순서를 강제해야 결과물이 매번 같은 품질로 나옵니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 맺음말 ═══ -->
+<section class="closing" id="closing" data-dark>
+  <div class="wrap">
+    <h2>요구 정의부터 검수와 정산까지,<br>사업 단위로 책임져 왔습니다</h2>
+    <p>공공·문화 포털과 면세 이커머스 등 다양한 프로젝트를 관리한 경험을 살려, 전문적인 사업 관리자로 나아가고 싶습니다.</p>
+    <div class="closing__contact">
+      <a href="mailto:sun8070vvv20@gmail.com">sun8070vvv20@gmail.com</a>
+      <span class="closing__sep" aria-hidden="true"></span>
+      <a href="tel:01072220473">010-7222-0473</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot__in wrap">
+    <span class="foot__name">박세훈 · WEB/APP BUSINESS PM · 2026</span>
+    <div class="foot__c">
+      <a href="mailto:sun8070vvv20@gmail.com">sun8070vvv20@gmail.com</a>
+      <a href="tel:01072220473">010-7222-0473</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ 문서 뷰어 모달 — 화면설계서 ═══ -->
+<div class="docmodal" id="docmodal" hidden role="dialog" aria-modal="true" aria-labelledby="dm-title">
+  <div class="docmodal__scrim" data-dm-close></div>
+  <div class="docmodal__panel">
+    <header class="docmodal__head">
+      <div class="docmodal__headtxt">
+        <p class="docmodal__eyebrow">화면설계서 · 대관 신청 관리자 CMS (2026)</p>
+        <h3 class="docmodal__title" id="dm-title">표지 — CMS 화면설계서</h3>
+      </div>
+      <div class="docmodal__tools">
+        <span class="docmodal__count"><b id="dm-cur">1</b> / <span id="dm-total">20</span></span>
+        <button type="button" class="docmodal__x" data-dm-close aria-label="문서 뷰어 닫기">&#10005;</button>
       </div>
     </header>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:56px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid #1A1A1A">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">활용툴</span>
-          <span style="font-size:13px;color:#8A8681">설계 · 문서 · 협업 · 구현</span>
-        </div>
-        <ul class="tool-grid" style="list-style:none;margin:0;padding:0">
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/figma.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">Figma</span><span style="height:4px;background:#E7E3DD"><i data-bar="62%" style="display:block;height:100%;width:62%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1)"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">중</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/ppt.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">PowerPoint · Slides</span><span style="height:4px;background:#E7E3DD"><i data-bar="90%" style="display:block;height:100%;width:90%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .08s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">상</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/excel.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">Excel · Sheets</span><span style="height:4px;background:#E7E3DD"><i data-bar="62%" style="display:block;height:100%;width:62%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .16s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">중</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/hwp.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">한글 · Word</span><span style="height:4px;background:#E7E3DD"><i data-bar="90%" style="display:block;height:100%;width:90%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .24s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">상</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/slack.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">Slack</span><span style="height:4px;background:#E7E3DD"><i data-bar="90%" style="display:block;height:100%;width:90%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .32s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">상</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/vscode.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">VS Code</span><span style="height:4px;background:#E7E3DD"><i data-bar="62%" style="display:block;height:100%;width:62%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .40s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">중</span></li>
-          <li style="display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr) 30px;align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid #E7E3DD"><span style="display:flex;align-items:center;gap:11px;font-size:16px;font-weight:600"><img src="uploads/icons/claude.png" alt="" width="22" height="22" loading="lazy" style="width:22px;height:22px;object-fit:contain;flex:none">생성형 AI</span><span style="height:4px;background:#E7E3DD"><i data-bar="62%" style="display:block;height:100%;width:62%;background:#A6462B;transition:width 1.1s cubic-bezier(.22,1,.36,1) .48s"></i></span><span style="font-size:13px;font-weight:700;color:#A6462B;text-align:right">중</span></li>
-        </ul>
+    <div class="docmodal__stage" id="dm-stage">
+      <div class="docmodal__scroll" id="dm-scroll">
+        <img id="dm-img" src="" alt="">
+        <img id="dm-img2" src="" alt="" hidden>
       </div>
-
-    <section id="s1" style="padding:72px 0 0">
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)">
-        <div style="display:flex;align-items:baseline;gap:18px">
-          <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#A6462B">01</span>
-          <h2 style="margin:0;font-size:40px;font-weight:700;letter-spacing:-.04em">소개</h2>
-        </div>
-        <p style="margin:24px 0 0;font-size:19px;line-height:1.85;max-width:44em;text-wrap:pretty">공공·문화 포털과 면세 이커머스에서 기획 PL로 일했습니다. 5,000만원부터 1억원 미만 규모의 사업을 맡아 요구사항 접수부터 일정 관리, 검수와 정산까지 책임졌고, 관리자 시스템을 직접 설계해 이벤트와 쿠폰 발급을 운영했습니다.</p>
-        <p style="margin:14px 0 0;font-size:16px;line-height:1.85;color:#6E6A65;max-width:44em">아래는 <b style="color:#1A1A1A">02 프로젝트</b>에서 문제를 어떻게 풀었는지, <b style="color:#1A1A1A">03 산출물</b>에서 무엇을 만들어 냈는지, <b style="color:#1A1A1A">04 특장점</b>에서 어떤 일을 맡을 수 있는지 순서로 읽으시면 됩니다.</p>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:26px">
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">기획 PL</span>
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">사업 관리</span>
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">라이브 운영</span>
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">경력 4년 5개월</span>
-        </div>
-        </sc-if>
-      </div>
-
-      <dl data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1) .08s,transform .7s cubic-bezier(.22,1,.36,1) .08s;margin:48px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:60px">
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">이름</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">박세훈 · Park Sehoon</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">생년월일</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">1993. 6. 1.</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">경력</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">4년 5개월 · 서비스 기획 PL · 사업 관리</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">지원 분야</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">WEB/APP 기획 및 사업 관리 PM</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">학력</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">울산대학교 역사·문화 졸업 (2012.03–2020.02)</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">병역</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">육군 만기전역 (2013.04–2015.01)</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">이메일</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">sun8070vvv20@gmail.com</dd></div>
-        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E7E3DD"><dt style="margin:0;font-size:13px;color:#8A8681">휴대폰 번호</dt><dd style="margin:0;font-size:15.5px;overflow-wrap:anywhere">010-7222-0473</dd></div>
-      </dl>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:64px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid #1A1A1A">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">Career</span>
-          <span style="font-size:13px;color:#8A8681">4년 5개월</span>
-        </div>
-        <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:44px;padding:32px 0;border-bottom:1px solid #E7E3DD">
-          <span style="font-size:14px;color:#8A8681;padding-top:7px">2025. 2. ~ 현재</span>
-          <div>
-            <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.03em">(주)이노디스 · 웹서비스팀 기획 PL</h3>
-            <p style="margin:10px 0 0;font-size:15.5px;color:#6E6A65">공공·문화 포털의 유지보수, 고도화, 재구축 — 담당 프로젝트 전부 사업 관리 담당</p>
-            <div style="margin-top:18px;padding-left:18px;border-left:2px solid #A6462B">
-              <div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A6462B">맡은 범위</div>
-              <p style="margin:9px 0 0;font-size:15px;line-height:1.8;color:#4A4844">사업 금액 5,000만원~1억원 미만 구간의 공기관 사업을 맡아 요구사항 접수부터 검수·정산까지 운영했습니다. WBS로 사업 일정과 소속 기획자의 업무를 함께 관리했고, 구축 이후의 상시 운영과 고도화도 이어서 담당했습니다.</p>
-            </div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:44px;padding:32px 0;border-bottom:1px solid #E7E3DD">
-          <span style="font-size:14px;color:#8A8681;padding-top:7px">2024. 1. ~ 2024. 11.</span>
-          <div>
-            <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.03em">(주)그라비티 네오싸이언 · 대리</h3>
-            <p style="margin:10px 0 0;font-size:15.5px;color:#6E6A65">면세 이커머스 운영 기획 및 프로모션 이벤트 기획</p>
-            <div style="margin-top:18px;padding-left:18px;border-left:2px solid #A6462B">
-              <div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A6462B">맡은 범위</div>
-              <p style="margin:9px 0 0;font-size:15px;line-height:1.8;color:#4A4844">상품 노출과 구매 흐름을 중심으로 사용자·관리자 화면 운영을 기획했습니다. 참여형 프로모션의 참여 조건과 회차 제한, 당첨 판정 규칙을 정하고 쿠폰·포인트 지급 규칙과 중복 지급·기간 만료 예외를 정의했습니다.</p>
-            </div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:44px;padding:32px 0;border-bottom:1px solid #E7E3DD">
-          <span style="font-size:14px;color:#8A8681;padding-top:7px">2021. 7. ~ 2023. 6.</span>
-          <div>
-            <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-.03em">(주)이노컴즈 · 주임</h3>
-            <p style="margin:10px 0 0;font-size:15.5px;color:#6E6A65">업무 시스템과 공공 홈페이지의 서비스 기획 실무</p>
-            <div style="margin-top:18px;padding-left:18px;border-left:2px solid #A6462B">
-              <div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A6462B">맡은 범위</div>
-              <p style="margin:9px 0 0;font-size:15px;line-height:1.8;color:#4A4844">출입증 시스템과 전자결재 업무 시스템 등 폐쇄형 시스템의 화면과 API 연계를 기획했고, 공공 홈페이지 반응형 리뉴얼의 화면정의서를 작성했습니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="s2" style="padding:120px 0 0">
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)">
-        <div style="display:flex;align-items:baseline;gap:18px">
-          <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#A6462B">02</span>
-          <h2 style="margin:0;font-size:40px;font-weight:700;letter-spacing:-.04em">프로젝트</h2>
-        </div>
-        <p style="margin:24px 0 0;font-size:19px;line-height:1.85;max-width:46em;text-wrap:pretty">사업 관리를 맡은 일 가운데 결과가 뚜렷한 네 건입니다. 프로젝트마다 <b>사업 관리, 운영, 데이터 설계</b> 관점에서 무엇을 맡아 무엇이 달라졌는지를 한 줄씩 적었습니다.</p>
-      </div>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:48px;padding-top:26px;border-top:1px solid #1A1A1A">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">공통업무 경험</span>
-          <span style="font-size:13px;color:#8A8681">프로젝트와 무관하게 늘 맡아 온 일</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:28px;border-top:1px solid #E7E3DD">
-          <div style="padding:26px 28px 26px 0;border-right:1px solid #E7E3DD">
-            <div style="display:flex;align-items:center;gap:12px"><span style="font-size:34px;font-weight:700;letter-spacing:-.05em;color:#A6462B;line-height:1">01</span><span style="flex:1;height:1px;background:#A6462B"></span></div>
-            <p style="margin:16px 0 0;font-size:18px;line-height:1.55;font-weight:700;letter-spacing:-.02em">기획서 · WBS 등 문서 작업</p>
-          </div>
-          <div style="padding:26px 28px;border-right:1px solid #E7E3DD">
-            <div style="display:flex;align-items:center;gap:12px"><span style="font-size:34px;font-weight:700;letter-spacing:-.05em;color:#A6462B;line-height:1">02</span><span style="flex:1;height:1px;background:#A6462B"></span></div>
-            <p style="margin:16px 0 0;font-size:18px;line-height:1.55;font-weight:700;letter-spacing:-.02em">내부 기안 처리 및 계약 문서 작성</p>
-          </div>
-          <div style="padding:26px 0 26px 28px">
-            <div style="display:flex;align-items:center;gap:12px"><span style="font-size:34px;font-weight:700;letter-spacing:-.05em;color:#A6462B;line-height:1">03</span><span style="flex:1;height:1px;background:#A6462B"></span></div>
-            <p style="margin:16px 0 0;font-size:18px;line-height:1.55;font-weight:700;letter-spacing:-.02em">고객과의 커뮤니케이션</p>
-          </div>
-        </div>
-      </div>
-
-      <article data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:64px;padding-top:34px;border-top:1px solid #1A1A1A">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:28px">
-          <h3 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.04em"><span style="color:#A6462B;font-size:20px;margin-right:14px">01</span>서울영화센터 포털 재구축</h3>
-          <span style="font-size:14px;color:#8A8681;white-space:nowrap">예술 포털 · 연 8천만원</span>
-        </div>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:18px">
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">라이브 운영</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">쿠폰 동기화</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">상태 설계</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">CMS 신규</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">연간 패스</span>
-        </div>
-        </sc-if>
-        <figure style="margin:32px 0 0;overflow:hidden;border-radius:10px;box-shadow:0 24px 60px rgba(26,26,26,.14);transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)">
-          <img src="uploads/%EC%84%9C%EC%9A%B8%EC%98%81%ED%99%94%EC%84%BC%ED%84%B0.png" alt="서울영화센터 멤버십 안내 화면" style="display:block;width:100%;height:auto;border:1px solid #E7E3DD;border-radius:10px">
-        </figure>
-        <div style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:52px;margin-top:36px">
-          <div>
-            <p style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1.4">이용자 유입을 늘리다</p>
-            <p style="margin:12px 0 0;font-size:15px;color:#8A8681">4개 영역 재구축 · 통계/쿠폰 관리 페이지 신설</p>
-          </div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844"><b style="color:#1A1A1A">대관·교육·메인·예매</b> 4개 영역을 재구축해 포털 전반의 이용 흐름을 다시 설계</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844"><b style="color:#1A1A1A">일·월·년 단위 통계 페이지</b>를 신설해 유입 연령대와 방문 시간대를 파악</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">쿠폰 발급을 하드코딩 방식에서 <b style="color:#1A1A1A">CMS 관리 페이지</b>로 개편하고, 쿠폰 상품을 직접 구성하도록 기획해 이벤트 혜택의 유연성을 높임</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844"><b style="color:#1A1A1A">기획전</b>을 신설하고 <b style="color:#1A1A1A">연간 패스</b> 상품을 기획·운영해 재방문 동기를 설계</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">고객사와 논의해 지속적인 유지보수를 이어가며 유입 인원 <b style="color:#A6462B">2025년 대비 50% 상승</b></li>
-          </ul>
-        </div>
-      </article>
-
-      <article data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:88px;padding-top:34px;border-top:1px solid #1A1A1A">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:28px">
-          <h3 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.04em"><span style="color:#A6462B;font-size:20px;margin-right:14px">02</span>서울영테크 청년 재무상담 포털</h3>
-          <span style="font-size:14px;color:#8A8681;white-space:nowrap">공공 서비스 · 연 1억원</span>
-        </div>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:18px">
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">사업 관리</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">운영</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">신청자 분석</span>
-        </div>
-        </sc-if>
-        <figure style="margin:32px 0 0;max-height:620px;overflow:hidden;border-radius:10px;box-shadow:0 24px 60px rgba(26,26,26,.14);transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)">
-          <img src="uploads/%EC%98%81%ED%85%8C%ED%81%AC.png" alt="서울영테크 맞춤 재무 상담 신청 화면" style="display:block;width:100%;height:auto;border:1px solid #E7E3DD;border-radius:10px">
-        </figure>
-        <div style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:52px;margin-top:36px">
-          <div>
-            <p style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1.4">신청자 유형을 그룹핑하다</p>
-            <p style="margin:12px 0 0;font-size:15px;color:#8A8681">다양한 신청자의 유형을 경험 및 데이터 분석하여 그룹핑 진행</p>
-          </div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">상담 신청 → 상담사 배정 → 상담 진행 → 상담 완료 <b style="color:#1A1A1A">4단계 절차 화면</b> 구축 진행</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">운영 단계에서 <b style="color:#1A1A1A">다양한 직종·연령층</b>을 접하는 경험을 함</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">직종 등 상담 유형에 따른 <b style="color:#1A1A1A">그룹 강의</b>를 제시</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844"><b style="color:#A6462B">월 4회이던 강의를 월 8회까지 확대</b></li>
-          </ul>
-        </div>
-      </article>
-
-      <article data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:88px;padding-top:34px;border-top:1px solid #1A1A1A">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:28px">
-          <h3 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.04em"><span style="color:#A6462B;font-size:20px;margin-right:14px">03</span>국립부여박물관 누리집 개편·고도화</h3>
-          <span style="font-size:14px;color:#8A8681">공공·문화 · 5,000만원 + 고도화 2건 2천만원</span>
-        </div>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:18px">
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">사업 관리</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">요구 명세</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">대안 비교</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">데이터 설계</span>
-        </div>
-        </sc-if>
-        <figure style="margin:32px 0 0;max-height:620px;overflow:hidden;border-radius:10px;box-shadow:0 24px 60px rgba(26,26,26,.14);transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)">
-          <img src="uploads/%EA%B5%AD%EB%A6%BD%EB%B6%80%EC%97%AC.png" alt="국립부여박물관 백제대향로관 전시안내 화면" style="display:block;width:100%;height:auto;border:1px solid #E7E3DD;border-radius:10px">
-        </figure>
-        <div style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:52px;margin-top:36px">
-          <div>
-            <p style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1.4">사업을 관리하다</p>
-            <p style="margin:12px 0 0;font-size:15px;color:#8A8681">3사 연동 일정 조율 · 발권 현황 노출 · 고도화 계약 2건</p>
-          </div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">외부 키오스크 연동 작업에 <b style="color:#1A1A1A">3개 고객사·협력사가 얽혀</b> 각자의 사정으로 일정이 모이지 않던 상황에서, <b style="color:#1A1A1A">WBS로 작업 일정을 통보</b>해 내부 일정을 관리한 경험</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">예약 페이지 바로가기를 추가해 발권 현황을 파악하게 함으로써 <b style="color:#A6462B">주말 매진율 60% → 80% 달성</b></li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">고객사의 불편한 부분을 기능 추가로 제시해 <b style="color:#1A1A1A">고도화 계약 2건</b>을 진행</li>
-          </ul>
-        </div>
-      </article>
-
-      <article data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:88px;padding-top:34px;border-top:1px solid #1A1A1A">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:28px">
-          <h3 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.04em"><span style="color:#A6462B;font-size:20px;margin-right:14px">04</span>신세계DF 면세 이커머스</h3>
-          <span style="font-size:14px;color:#8A8681">이커머스</span>
-        </div>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:18px">
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">운영 기획</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">프로모션</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">쿠폰·포인트</span>
-          <span style="font-size:13px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">구매 흐름</span>
-        </div>
-        </sc-if>
-        <figure style="margin:32px 0 0;max-height:620px;overflow:hidden;border-radius:10px;box-shadow:0 24px 60px rgba(26,26,26,.14);transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)">
-          <img src="uploads/%EC%8B%A0%EC%84%B8%EA%B3%84%20%EC%9D%B4%EB%B2%A4%ED%8A%B8.png" alt="신세계면세점 혜택 모음 화면" style="display:block;width:100%;height:auto;border:1px solid #E7E3DD;border-radius:10px">
-        </figure>
-        <div style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:52px;margin-top:36px">
-          <div>
-            <p style="margin:0;font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1.4">대형 이커머스를 경험하다</p>
-            <p style="margin:12px 0 0;font-size:15px;color:#8A8681">면세 이커머스 운영 기획 및 프로모션 이벤트 기획</p>
-          </div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">상품 노출부터 주문·결제까지 <b style="color:#1A1A1A">구매 흐름을 점검</b>해 개선안을 정리</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">상품 노출과 구매 흐름을 중심으로 <b style="color:#1A1A1A">사용자·관리자 화면 운영</b>을 기획</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">참여형 프로모션의 <b style="color:#1A1A1A">참여 조건과 회차 제한, 당첨 판정 규칙</b>을 설계</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">쿠폰·포인트 지급 규칙과 <b style="color:#1A1A1A">중복 지급·기간 만료 예외</b>를 정의</li>
-            <li style="padding:14px 0;border-bottom:1px solid #E7E3DD;font-size:16px;line-height:1.75;color:#4A4844">실무 라인이라 주도적으로 사업 관리를 하는 입장은 아니었고, <b style="color:#1A1A1A">판매와 BM을 상세하게 볼 수 있었던 경험</b></li>
-          </ul>
-        </div>
-      </article>
-
-    </section>
-
-    <section id="s3" style="padding:120px 0 0">
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)">
-        <div style="display:flex;align-items:baseline;gap:18px">
-          <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#A6462B">03</span>
-          <h2 style="margin:0;font-size:40px;font-weight:700;letter-spacing:-.04em">산출물</h2>
-        </div>
-        <p style="margin:24px 0 0;font-size:19px;line-height:1.85;max-width:46em;text-wrap:pretty">작성해 온 문서를 기획·데이터·관리 세 갈래로 정리했습니다. 아래 샘플 세 장은 각각 <b>기획서·WBS·플로우차트</b>를 대표하는 발췌본입니다.</p>
-        <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:26px">
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">기획 문서</span>
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">데이터 문서</span>
-          <span style="font-size:13.5px;font-weight:600;color:#A6462B;border-bottom:1px solid #A6462B;padding-bottom:3px">관리 문서</span>
-        </div>
-        </sc-if>
-      </div>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:52px;margin-top:52px">
-        <div>
-          <div style="font-size:20px;font-weight:700;letter-spacing:-.02em;padding-bottom:12px;border-bottom:1px solid #1A1A1A">기획 문서</div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">화면기획서 · 화면정의서</li>
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">요구사항정의서</li>
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">정책 문서</li>
-          </ul>
-        </div>
-        <div>
-          <div style="font-size:20px;font-weight:700;letter-spacing:-.02em;padding-bottom:12px;border-bottom:1px solid #1A1A1A">데이터 문서</div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">API 연계 기획서</li>
-          </ul>
-        </div>
-        <div>
-          <div style="font-size:20px;font-weight:700;letter-spacing:-.02em;padding-bottom:12px;border-bottom:1px solid #1A1A1A">관리 문서</div>
-          <ul style="list-style:none;margin:0;padding:0">
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">WBS · 일정 관리</li>
-            <li style="padding:13px 0;border-bottom:1px solid #E7E3DD;font-size:16px">유지보수 보고서</li>
-          </ul>
-        </div>
-      </div>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);margin-top:72px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid #1A1A1A">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">문서 샘플</span>
-          <span style="font-size:13px;color:#8A8681">기획서 · WBS · 플로우차트 각 1장</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:32px">
-          <figure style="margin:0">
-            <div style="aspect-ratio:4/3;overflow:hidden;border-radius:10px;box-shadow:0 18px 44px rgba(26,26,26,.13);border:1px solid #E7E3DD;transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)"><img src="uploads/work-screen.png" alt="화면 설계서 발췌" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
-            <figcaption style="margin-top:12px;font-size:14px;color:#6E6A65">기획서 — 환불계좌 등록 모달 정의</figcaption>
-          </figure>
-          <figure style="margin:0">
-            <div style="aspect-ratio:4/3;overflow:hidden;border-radius:10px;box-shadow:0 18px 44px rgba(26,26,26,.13);border:1px solid #E7E3DD;transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)"><img src="uploads/work-wbs.png" alt="WBS 일정 관리 발췌" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
-            <figcaption style="margin-top:12px;font-size:14px;color:#6E6A65">WBS — 사업 일정과 담당 배분</figcaption>
-          </figure>
-          <figure style="margin:0">
-            <div style="aspect-ratio:4/3;overflow:hidden;border-radius:10px;box-shadow:0 18px 44px rgba(26,26,26,.13);border:1px solid #E7E3DD;transition:transform .4s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-6px)"><img src="uploads/work-data.png" alt="대관 신청 플로우차트 발췌" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top center"></div>
-            <figcaption style="margin-top:12px;font-size:14px;color:#6E6A65">플로우차트 — 대관 신청 승인·입금 흐름</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="s4" style="padding:120px 0 0">
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)">
-        <div style="display:flex;align-items:baseline;gap:18px">
-          <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#A6462B">04</span>
-          <h2 style="margin:0;font-size:40px;font-weight:700;letter-spacing:-.04em">특장점</h2>
-        </div>
-        <p style="margin:24px 0 0;font-size:19px;line-height:1.85;max-width:46em;text-wrap:pretty">사업 단위로 맡아 온 일을 여섯 가지 역량으로 정리했습니다.</p>
-      </div>
-
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 60px;margin-top:48px">
-        <div style="padding:26px 0;border-top:1px solid #1A1A1A"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">01</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">사업 관리 · 검수와 정산</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">기획 PL로 사업 하나를 통째로 맡습니다. 요구사항 접수, WBS 일정 수립, 소속 기획자 업무 배분, 검수와 정산까지 사업 단위로 책임집니다.</p></div>
-        <div style="padding:26px 0;border-top:1px solid #1A1A1A"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">02</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">이벤트 · 쿠폰 운영 설계</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">참여 조건과 회차 제한, 당첨 판정 규칙을 정하고 쿠폰·포인트 지급 규칙과 중복 지급·기간 만료 예외를 정의합니다. 외부 시스템이 발급한 쿠폰을 내부 데이터와 맞추는 동기화도 설계했습니다.</p></div>
-        <div style="padding:26px 0;border-top:1px solid #E7E3DD"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">03</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">라이브 운영과 정책 확정</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">돌아가는 서비스를 상시 운영하며 고도화합니다. 기존 기능을 바꿔야 할 때는 영향 범위를 전수 확인하고 대안을 비교한 뒤 정책 항목으로 확정해 문서로 남깁니다.</p></div>
-        <div style="padding:26px 0;border-top:1px solid #E7E3DD"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">04</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">관리자 시스템(CMS·BO) 설계</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">운영자가 실제로 쓸 화면을 설계합니다. 신청·승인·반려·취소 상태 흐름과 전용 테이블, 목록 검색 조건, 일괄 처리, 권한 구분과 내려받기 규칙을 포함합니다.</p></div>
-        <div style="padding:26px 0;border-top:1px solid #E7E3DD"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">05</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">지표 화면과 데이터 연계</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">쌓인 데이터를 운영이 볼 수 있는 통계 화면으로 만듭니다. 화면이 쓰는 데이터를 테이블과 컬럼 단위로 정의하고, 외부 시스템과 주고받는 항목의 명세를 작성합니다.</p></div>
-        <div style="padding:26px 0;border-top:1px solid #E7E3DD"><div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#A6462B">06</div><h3 style="margin:10px 0 0;font-size:22px;font-weight:700;letter-spacing:-.03em">AI 활용 · 문서와 바이브 코딩</h3><p style="margin:12px 0 0;font-size:15.5px;line-height:1.8;color:#4A4844">문서 작업에 AI를 적극 사용하여 반복되는 단순 작업에 소요되는 시간을 줄였습니다. 사용 시 서브에이전트로 나누어 분업하고, 하네스·스킬로 코드·문서 산출물의 규격을 일원화했습니다. 계획 → 검토 → 구현 순서를 반드시 거치도록 작업 흐름을 구성했습니다.</p></div>
-      </div>
-
-
-    </section>
-
-    <section id="s5" style="padding:120px 0 0">
-      <div data-rv style="transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)">
-        <div style="display:flex;align-items:baseline;gap:18px">
-          <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#A6462B">05</span>
-          <h2 style="margin:0;font-size:40px;font-weight:700;letter-spacing:-.04em">맺음말</h2>
-        </div>
-        <p style="margin:28px 0 0;font-size:30px;font-weight:600;line-height:1.65;letter-spacing:-.03em;max-width:26em;text-wrap:pretty">요구 정의부터 일정 관리, 검수와 정산까지 사업 단위로 책임져 왔으며 공공·면세 이커머스 등 다양한 프로젝트를 관리 경험 하였습니다.</p>
-        <p style="margin:20px 0 0;font-size:30px;font-weight:600;line-height:1.65;letter-spacing:-.03em;max-width:26em;color:#A6462B">이 경험을 살려 전문적인 사업 관리자로 나아가고 싶습니다.</p>
-      </div>
-    </section>
-
-    <div style="margin:110px 0 0;padding:72px 0 64px;border-top:1px solid #1A1A1A">
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px">
-        <div>
-          <div style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">Email</div>
-          <a href="mailto:sun8070vvv20@gmail.com" style="display:block;margin-top:12px;font-size:26px;font-weight:700;letter-spacing:-.035em;color:#1A1A1A;overflow-wrap:anywhere;transition:color .2s ease" style-hover="color:#A6462B">sun8070vvv20@gmail.com</a>
-        </div>
-        <div>
-          <div style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8A8681">Phone</div>
-          <a href="tel:010-7222-0473" style="display:block;margin-top:12px;font-size:26px;font-weight:700;letter-spacing:-.035em;color:#1A1A1A;overflow-wrap:anywhere;transition:color .2s ease" style-hover="color:#A6462B">010-7222-0473</a>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:56px;padding-top:22px;border-top:1px solid #E7E3DD;font-size:13px;letter-spacing:.14em;color:#8A8681">
-        <span>박세훈 · WEB/APP BUSINESS PM</span><span>2026</span>
+      <div class="dm-swipe" id="dm-swipe" aria-hidden="true">
+      <span class="dm-swipe__chev dm-swipe__chev--l">&#8249;</span>
+      <svg class="dm-swipe__hand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/>
+        <path d="M12 11V4.5a1.5 1.5 0 0 1 3 0V11"/>
+        <path d="M15 11.5V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1.2a5 5 0 0 1-3.7-1.6L6 16.5"/>
+        <path d="M9 11.5V9.8a1.4 1.4 0 0 0-2.6-.7l-.6 1.1a3 3 0 0 0 .1 3.1l1.4 2.2"/>
+      </svg>
+      <span class="dm-swipe__chev dm-swipe__chev--r">&#8250;</span>
+        <span class="dm-swipe__txt">좌우로 밀어 2장씩 넘기기</span>
       </div>
     </div>
-
-  </main>
+    <button type="button" class="docmodal__arrow docmodal__arrow--prev" data-dm-prev aria-label="이전 장">&#8249;</button>
+    <button type="button" class="docmodal__arrow docmodal__arrow--next" data-dm-next aria-label="다음 장">&#8250;</button>
+    <p class="docmodal__hint">한 화면에 2장씩 표시됩니다 · 위아래로 스크롤, 좌우로 밀면 2장씩 넘어갑니다</p>
+    <nav class="docmodal__rail" id="dm-rail" aria-label="화면설계서 장 이동"></nav>
+  </div>
 </div>
 
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showTags&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;내용&quot;}}">
-class Component extends DCLogic {
-  setup() {
-    if (this._ready) return;
-    this._ready = true;
+<script>
+(function(){
+  // 스크롤 등장
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.rise').forEach(function(el){ io.observe(el); });
 
-    const prog = document.querySelector('[data-prog]');
-    const onScroll = () => {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    this._onScroll = onScroll;
-
-    if (!('IntersectionObserver' in window)) return;
-    const items = Array.from(document.querySelectorAll('[data-rv]'));
-    items.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(18px)';
+  // 워터마크 — 어두운 섹션 위에서는 흰색으로 (제안서 규칙)
+  var wm = document.getElementById('wm');
+  var darks = document.querySelectorAll('[data-dark]');
+  function syncWM(){
+    var y = 86, on = false;   // 워터마크가 놓인 높이
+    darks.forEach(function(s){
+      var r = s.getBoundingClientRect();
+      if (r.top <= y && r.bottom >= y) on = true;
     });
-    const io = new IntersectionObserver(es => {
-      es.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'none';
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-    items.forEach(el => io.observe(el));
-    this._io = io;
+    wm.classList.toggle('on-dark', on);
+  }
+  // GNB 액션 노출 + 워터마크 숨김 — 표지를 지났는지로 판단
+  var cover = document.querySelector('.cover');
+  var navEl = document.querySelector('.nav');
+  function syncNav(){
+    if (!cover || !navEl) return;
+    var past = cover.getBoundingClientRect().bottom <= 8;
+    navEl.classList.toggle('nav--acts', past);
+    wm.classList.toggle('is-hidden', past);
+  }
 
-    const navs = Array.from(document.querySelectorAll('[data-nav]'));
-    const ids = ['s1','s2','s3','s4','s5'];
-    const mark = () => {
-      const line = window.innerHeight * 0.35;
-      let active = null;
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= line) active = id;
-      });
-      navs.forEach(a => {
-        const on = a.getAttribute('data-nav') === active;
-        a.style.color = on ? '#1A1A1A' : '#8A8681';
-        a.style.borderLeftColor = on ? '#A6462B' : '#E7E3DD';
-        a.style.paddingLeft = on ? '20px' : '14px';
-      });
-    };
-    window.addEventListener('scroll', mark, { passive: true });
-    mark();
-    this._mark = mark;
-  }
-  componentDidMount() { requestAnimationFrame(() => this.setup()); }
-  componentWillUnmount() {
-    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
-    if (this._io) this._io.disconnect();
-    if (this._mark) window.removeEventListener('scroll', this._mark);
-  }
-  renderVals() {
-    if (!this._queued) {
-      this._queued = true;
-      const tick = (n) => {
-        if (this._ready) return;
-        if (document.querySelector('[data-prog]') && document.querySelectorAll('[data-rv]').length) { this.setup(); return; }
-        if (n < 40) setTimeout(() => tick(n + 1), 100);
-      };
-      setTimeout(() => tick(0), 0);
+  function onScroll(){ syncWM(); syncNav(); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+
+  // ── 문서 뷰어 모달 (화면설계서) ──
+  var DOC = {
+    base: 'docs/rental-cms/',
+    pages: [
+      { f:'01.png', t:'표지 — CMS 화면설계서' },
+      { f:'02.png', t:'제·개정 이력' },
+      { f:'03.png', t:'GNB — 관리자 메뉴 구조' },
+      { f:'04.png', t:'기본 기능 가이드' },
+      { f:'05.png', t:'공연 정보 관리' },
+      { f:'06.png', t:'공연 목록 (PF01-001)' },
+      { f:'07.png', t:'공연 목록 — 상세 설정 펼침 (PF01-001)' },
+      { f:'08.png', t:'공연 등록 1/2 (PF01-002)' },
+      { f:'09.png', t:'공연 등록 2/2 (PF01-002)' },
+      { f:'10.png', t:'시설대관 관리(A)' },
+      { f:'11.png', t:'시설대관 목록 (FL01-001)' },
+      { f:'12.png', t:'시설대관 등록 (FL01-002)' },
+      { f:'13.png', t:'시설대관 수정 (FL01-003)' },
+      { f:'14.png', t:'신청자 목록 (FL02-001)' },
+      { f:'15.png', t:'신청자 목록 (FL02-001)' },
+      { f:'16.png', t:'신청자 등록 (FL02-002)' },
+      { f:'17.png', t:'신청자 등록 (FL02-002)' },
+      { f:'18.png', t:'신청자 등록 — 불승인·취소 사유 분기 (FL02-002)' },
+      { f:'19.png', t:'신청자 수정 (FL02-003)' },
+      { f:'20.png', t:'신청자 수정 (FL02-003)' }
+    ]
+  };
+
+  var modal = document.getElementById('docmodal');
+  if (modal) {
+    var img   = document.getElementById('dm-img');
+    var img2  = document.getElementById('dm-img2');
+    var stage = document.getElementById('dm-stage');
+    var scroller = document.getElementById('dm-scroll');
+    var elCur = document.getElementById('dm-cur');
+    var elTot = document.getElementById('dm-total');
+    var elTit = document.getElementById('dm-title');
+    var rail  = document.getElementById('dm-rail');
+    var swipeUI = document.getElementById('dm-swipe');
+    var prevBtn = modal.querySelector('[data-dm-prev]');
+    var nextBtn = modal.querySelector('[data-dm-next]');
+    var N = DOC.pages.length;
+    var idx = 0, opener = null, dots = [];
+
+    // MO·태블릿에서는 2장을 위아래로 쌓아 보여주고 2장 단위로 넘긴다
+    var mqPair = window.matchMedia('(max-width:1024px)');
+    function isPair(){ return mqPair.matches; }
+    function step(){ return isPair() ? 2 : 1; }
+    function normalize(i){
+      i = Math.max(0, Math.min(N - 1, i));
+      return isPair() ? Math.floor(i / 2) * 2 : i;
     }
-    return {
-      showTags: this.props.showTags ?? true,
-      setRoot: el => { if (el) setTimeout(() => this.setup(), 0); }
-    };
+
+    elTot.textContent = N;
+
+    function buildRail(){
+      rail.textContent = '';
+      dots = [];
+      for (var i = 0; i < N; i += step()) {
+        (function(start){
+          var pair = isPair() && start + 1 < N;
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'docmodal__dot';
+          b.textContent = pair ? (start + 1) + '-' + (start + 2) : String(start + 1);
+          b.title = pair
+            ? DOC.pages[start].t + ' · ' + DOC.pages[start + 1].t
+            : DOC.pages[start].t;
+          b.addEventListener('click', function(){ go(start); });
+          rail.appendChild(b);
+          dots.push({ el: b, start: start });
+        })(i);
+      }
+    }
+
+    function preload(i){
+      if (i < 0 || i >= N) return;
+      var im = new Image(); im.src = DOC.base + DOC.pages[i].f;
+    }
+
+    function go(i){
+      idx = normalize(i);
+      var a = DOC.pages[idx];
+      var b = isPair() && idx + 1 < N ? DOC.pages[idx + 1] : null;
+
+      img.src = DOC.base + a.f;
+      img.alt = '화면설계서 ' + (idx + 1) + '장 — ' + a.t;
+      if (b) {
+        img2.src = DOC.base + b.f;
+        img2.alt = '화면설계서 ' + (idx + 2) + '장 — ' + b.t;
+        img2.hidden = false;
+      } else {
+        img2.hidden = true;
+        img2.removeAttribute('src');
+      }
+
+      elCur.textContent = b ? (idx + 1) + '-' + (idx + 2) : String(idx + 1);
+      elTit.textContent = b ? a.t + ' · ' + b.t : a.t;
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx + step() >= N;
+      dots.forEach(function(d){
+        if (d.start === idx) { d.el.setAttribute('aria-current', 'true'); }
+        else { d.el.removeAttribute('aria-current'); }
+      });
+      if (scroller) { scroller.scrollLeft = 0; scroller.scrollTop = 0; }
+      preload(idx + step()); preload(idx + step() + 1); preload(idx - 1);
+    }
+
+    function onKey(e){
+      if (e.key === 'Escape') { close(); }
+      else if (e.key === 'ArrowRight') { go(idx + step()); }
+      else if (e.key === 'ArrowLeft') { go(idx - step()); }
+      else if (e.key === 'Home') { go(0); }
+      else if (e.key === 'End') { go(N - 1); }
+    }
+
+    function open(){
+      opener = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      buildRail();
+      go(0);
+      hintShown = false;
+      showSwipeHint();
+      modal.querySelector('.docmodal__x').focus();
+      document.addEventListener('keydown', onKey);
+    }
+
+    function close(){
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      if (opener && opener.focus) opener.focus();
+    }
+
+    // ── 좌우 스와이프 (MO·태블릿) ──
+    var hintShown = false, hintTimer = null;
+
+    function hideSwipeHint(){
+      if (!swipeUI || swipeUI.classList.contains('is-gone')) return;
+      swipeUI.classList.add('is-gone');
+      if (hintTimer) { clearTimeout(hintTimer); hintTimer = null; }
+    }
+
+    function showSwipeHint(){
+      if (!swipeUI || !isPair() || hintShown) return;
+      hintShown = true;
+      swipeUI.classList.remove('is-gone');
+      if (hintTimer) clearTimeout(hintTimer);
+      hintTimer = setTimeout(hideSwipeHint, 4200);
+    }
+
+    if (stage) {
+      var tx = 0, ty = 0, tracking = false, axis = '';
+      stage.addEventListener('touchstart', function(e){
+        if (!isPair() || e.touches.length !== 1) { tracking = false; return; }
+        tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+        tracking = true; axis = '';
+      }, { passive:true });
+
+      stage.addEventListener('touchmove', function(e){
+        if (!tracking || e.touches.length !== 1) return;
+        var dx = e.touches[0].clientX - tx;
+        var dy = e.touches[0].clientY - ty;
+        // 가로·세로 중 우세한 축을 한 번만 정한다 (세로 스크롤과 충돌 방지)
+        if (!axis && (Math.abs(dx) > 12 || Math.abs(dy) > 12)) {
+          axis = Math.abs(dx) > Math.abs(dy) * 1.4 ? 'x' : 'y';
+        }
+        if (axis === 'x' && e.cancelable) { e.preventDefault(); }
+      }, { passive:false });
+
+      stage.addEventListener('touchend', function(e){
+        if (!tracking) return;
+        tracking = false;
+        if (axis !== 'x') return;
+        var dx = (e.changedTouches[0] || {}).clientX - tx;
+        if (Math.abs(dx) < 45) return;
+        hideSwipeHint();
+        go(dx < 0 ? idx + step() : idx - step());
+      }, { passive:true });
+    }
+
+    // 화면 폭이 바뀌어 1장↔2장 모드가 뒤집히면 레일을 다시 짜고 현재 위치를 유지
+    function onModeChange(){
+      if (modal.hidden) return;
+      buildRail();
+      go(idx);
+      if (!isPair()) { hideSwipeHint(); }
+    }
+    if (mqPair.addEventListener) { mqPair.addEventListener('change', onModeChange); }
+    else if (mqPair.addListener) { mqPair.addListener(onModeChange); }
+
+    document.querySelectorAll('[data-doc-open]').forEach(function(b){
+      b.addEventListener('click', open);
+    });
+    modal.querySelectorAll('[data-dm-close]').forEach(function(b){
+      b.addEventListener('click', close);
+    });
+    prevBtn.addEventListener('click', function(){ hideSwipeHint(); go(idx - step()); });
+    nextBtn.addEventListener('click', function(){ hideSwipeHint(); go(idx + step()); });
   }
-}
+})();
 </script>
 </body>
 </html>
