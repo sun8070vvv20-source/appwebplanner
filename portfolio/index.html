@@ -231,11 +231,13 @@ ul{ list-style:none; padding:0; }
 }
 .cover__txt{ min-width:0; }
 .cover__photo{
-  position:relative; margin:0;
+  position:relative; margin:0; padding:0; border:0; background:none;
+  -webkit-appearance:none; appearance:none; cursor:pointer;
   width:clamp(120px,12vw,164px); aspect-ratio:1;
   transition:transform .3s ease;
 }
-.cover__photo:hover{ transform:translateY(-3px); }
+.cover__photo:active{ transform:scale(.96); }
+.cover__photo:focus-visible{ outline:3px solid #fff; outline-offset:6px; border-radius:50%; }
 .cover__photo img{
   position:absolute; inset:0; display:block; width:100%; height:100%;
   border-radius:50%; object-fit:cover;
@@ -245,8 +247,15 @@ ul{ list-style:none; padding:0; }
 /* 평소엔 캐릭터, 올리면 실사로 */
 .cover__photo--char{ object-position:center 46%; opacity:1; }
 .cover__photo--real{ object-position:center 36%; opacity:0; }
-.cover__photo:hover .cover__photo--char{ opacity:0; }
-.cover__photo:hover .cover__photo--real{ opacity:1; }
+/* 마우스가 있는 환경 : 올리면 실사 */
+@media (hover:hover){
+  .cover__photo:hover{ transform:translateY(-3px); }
+  .cover__photo:hover .cover__photo--char{ opacity:0; }
+  .cover__photo:hover .cover__photo--real{ opacity:1; }
+}
+/* 터치 환경 : 한 번 누르면 실사, 다시 누르면 캐릭터 */
+.cover__photo.is-real .cover__photo--char{ opacity:0; }
+.cover__photo.is-real .cover__photo--real{ opacity:1; }
 @media (max-width:900px){
   .cover__top{ grid-template-columns:1fr; gap:var(--s5); justify-items:start; }
   .cover__photo{ order:-1; }          /* MO 에서는 사진이 먼저 */
@@ -1133,23 +1142,241 @@ ul{ list-style:none; padding:0; }
   .aia-back{ animation:none; }
 }
 
+/* ───────────────────────────────────────────
+   바이브코딩 산출물 버튼 — 기존 .btn 변형을 그대로 쓰고
+   눌러 볼 수 있는 화면이라는 신호만 점으로 더한다
+   ─────────────────────────────────────────── */
+.live-dot{
+  position:relative; flex:0 0 7px; width:7px; height:7px; border-radius:50%;
+  background:currentColor;
+}
+.live-dot::after{
+  content:""; position:absolute; inset:0; border-radius:50%; background:currentColor;
+  animation:live-ping 1.9s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes live-ping{ 0%{ transform:scale(1); opacity:.55; } 80%,100%{ transform:scale(2.8); opacity:0; } }
+.proj__live{ display:flex; justify-content:center; margin-top:var(--s3); }
+@media (prefers-reduced-motion:reduce){ .live-dot::after{ animation:none; } }
+
+/* ───────────────────────────────────────────
+   바이브코딩 산출물 모달 — 탭이 곧 헤더 (별도 타이틀 없음)
+   탭 스타일은 GNB(.nav__links)의 밑줄 강조 방식을 따른다
+   ─────────────────────────────────────────── */
+.lvmodal{
+  position:fixed; inset:0; z-index:210;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(10px,2.2vw,28px);
+}
+.lvmodal[hidden]{ display:none; }
+.lvmodal__scrim{ position:absolute; inset:0; background:rgba(0,12,30,.62); }
+.lvmodal__panel{
+  position:relative; display:flex; flex-direction:column;
+  width:100%; max-width:1280px; height:100%; max-height:92vh;
+  background:var(--adaptiveBackgroundLevel01); border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,12,30,.4);
+}
+/* 탭 바 = 헤더 */
+.lvmodal__bar{
+  display:flex; align-items:center; gap:var(--s4);
+  padding:0 var(--s4); border-bottom:1px solid var(--adaptiveHairlineBorder);
+}
+.lvmodal__tabs{
+  flex:1 1 auto; min-width:0; display:flex; gap:var(--s5);
+  overflow-x:auto; scrollbar-width:none;
+}
+.lvmodal__tabs::-webkit-scrollbar{ display:none; }
+.lvtab{
+  flex:0 0 auto; padding:18px 0 15px; border:0; border-bottom:2px solid transparent;
+  margin-bottom:-1px; background:none; cursor:pointer; text-align:left;
+  font-family:inherit; font-size:var(--t5); font-weight:700; letter-spacing:-.02em;
+  color:var(--adaptiveGrey600); transition:color .18s, border-color .18s;
+}
+.lvtab small{
+  display:block; margin-top:3px; font-size:var(--t7); font-weight:500;
+  color:var(--adaptiveGrey400); letter-spacing:-.01em;
+}
+.lvtab:hover{ color:var(--adaptiveGrey900); }
+.lvtab[aria-selected="true"]{ color:var(--adaptiveBlue500); border-bottom-color:var(--adaptiveBlue500); }
+.lvtab[aria-selected="true"] small{ color:var(--adaptiveBlue400); }
+.lvmodal__x{
+  flex:0 0 auto; width:40px; height:40px; border:0; border-radius:12px;
+  background:var(--adaptiveGrey100); color:var(--adaptiveGrey600);
+  font-size:22px; line-height:1; cursor:pointer;
+}
+.lvmodal__x:hover{ background:var(--adaptiveGrey200); color:var(--adaptiveGrey900); }
+/* 화면 */
+.lvmodal__stage{ flex:1 1 auto; min-height:0; background:var(--adaptiveGrey100); }
+.lvmodal__stage iframe{ display:block; width:100%; height:100%; border:0; background:#fff; }
+.lvmodal__foot{
+  display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
+  padding:10px var(--s4); border-top:1px solid var(--adaptiveHairlineBorder);
+  font-size:var(--t7); line-height:1.6; color:var(--adaptiveGrey500);
+}
+.lvmodal__foot a{ color:var(--adaptiveBlue600); font-weight:700; }
+.lvmodal__replay{
+  margin-left:auto; height:30px; padding:0 12px; border:0; border-radius:8px;
+  background:var(--adaptiveBlue50); color:var(--adaptiveBlue700);
+  font-family:inherit; font-size:var(--t7); font-weight:700; cursor:pointer;
+}
+.lvmodal__replay:hover{ background:var(--adaptiveBlue100); }
+@media (max-width:760px){
+  .lvmodal{ padding:0; }
+  .lvmodal__panel{ max-height:100%; border-radius:0; }
+  .lvmodal__bar{ padding:0 var(--s3); gap:var(--s3); }
+  .lvmodal__tabs{ gap:var(--s4); }
+  .lvtab{ padding:14px 0 12px; font-size:var(--t6); }
+  .lvmodal__foot{ padding:8px var(--s3); }
+}
+
 /* ── 스크롤 등장 ── */
 .rise{ opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
 .rise.in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){
   .rise{ opacity:1; transform:none; transition:none; }
   .cover__photo,.cover__photo img{ transition:none; }
+  .cover__photo:active{ transform:none; }
   .tool__meter i{ transition:none; transition-delay:0s; }
   html{ scroll-behavior:auto; }
   .btn:hover,.card:hover{ transform:none; }
 }
 
 /* ── 인쇄 ── */
+@page{ size:A4; margin:14mm 15mm; }
+
+/* ═══════════════════════════════════════════════════════════
+   인쇄 = 문서 타입 · 무채색
+   면 채움과 색을 전부 걷어내고 글자·괘선·여백만으로 위계를 만든다.
+   화면 스타일에는 영향이 없다.
+   ═══════════════════════════════════════════════════════════ */
 @media print{
-  .nav,.watermark,.cover__acts,.closing__acts,.fab{ display:none; }
-  body{ background:#fff; }
-  .sec{ padding-block:28px; break-inside:avoid; }
-  .cover,.divider,.closing,.ai{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  /* ── 화면 전용 요소 제거 ── */
+  .nav,.watermark,.fab,.cover__acts,.closing__acts,.doccard__more,
+  .cover::before,.cover::after,.closing::before{ display:none !important; }
+
+  /* ── 색 전면 제거 ── */
+  *,*::before,*::after{
+    background:none !important;
+    box-shadow:none !important;
+    text-shadow:none !important;
+    color:#1a1a1a !important;
+    border-color:#c8c8c8 !important;
+    border-radius:0 !important;
+  }
+  html,body{ background:#fff !important; }
+  img{ filter:grayscale(1) !important; }
+  svg{ filter:grayscale(1) !important; }
+
+  /* ── 회색 단계로 위계 ── */
+  .shead p,.blk-lead,.track__d,.crew__d,.cover__sub,.cover__eyebrow,
+  .proj__sub,.foot-note,.doccard__kind,.kind ul li,.stat span,
+  .card__desc,.compare__tag,.swim__who span,.foot__name,.foot__c a{
+    color:#5a5a5a !important;
+  }
+  em,b,strong,.hl,.result b{ color:#000 !important; font-style:normal; }
+
+  /* ── 표지 : 문서 표제지 ── */
+  .cover{
+    min-height:0 !important; display:block !important;
+    padding-block:0 26px !important;
+    border-bottom:2px solid #1a1a1a !important;
+    break-after:page;
+  }
+  .cover__in{ padding-block:0 !important; }
+  .cover__top{ display:flex !important; align-items:center; gap:22px; }
+  .cover__photo{ width:88px !important; order:0 !important; }
+  .cover__photo img{ border-radius:50% !important; }
+  .cover h1{ font-size:34px !important; margin-bottom:2px; }
+  .cover__role{ font-size:17px !important; }
+  .cover__lead{ font-size:12pt !important; }
+  .cover__meta{ border-top:1px solid #c8c8c8 !important; }
+
+  /* ── 간지 : 장 제목 ── */
+  .divider{
+    min-height:0 !important; padding-block:10px 6px !important;
+    border-top:2px solid #1a1a1a !important; border-bottom:1px solid #c8c8c8 !important;
+    break-before:page; break-after:avoid;
+  }
+  .divider h2{ font-size:19px !important; }
+  .divider__no{ font-size:9.5pt !important; color:#5a5a5a !important; }
+
+  /* ── 섹션 ── */
+  .sec{ padding-block:20px !important; }
+  .shead{ margin-bottom:16px !important; }
+  .shead--ruled{ border-bottom:1px solid #c8c8c8 !important; }
+  .shead h2{ font-size:17px !important; }
+  .blk-h{ font-size:14pt !important; border-bottom:1px solid #dcdcdc; padding-bottom:5px; }
+
+  /* ── 배지·칩 : 채움 대신 괘선 ── */
+  .stepbadge,.tag,.blk-h__badge,.crew__role,.samplebadge{
+    border:1px solid #b4b4b4 !important; padding:2px 8px !important;
+    font-size:9pt !important; font-weight:600 !important;
+  }
+  .samplebadge{ position:static !important; display:inline-block; margin-bottom:4px; }
+
+  /* ── 도식 : 면 대신 테두리 ── */
+  .flow__step,.swim__box,.compare__side,.card,.crew__c,.doccard,.kind,.stat,.tool{
+    border:1px solid #c8c8c8 !important;
+  }
+  .flow__step,.swim__box{ padding:8px 12px !important; font-size:10pt !important; }
+  .compare__side{ padding:14px 16px !important; }
+  .card,.crew__c,.doccard{ padding:14px 16px !important; }
+  .kind,.stat,.tool{ border:0 !important; border-top:1px solid #c8c8c8 !important; padding-top:10px !important; }
+  .kind::before{ background:#1a1a1a !important; height:2px !important; width:26px !important; }
+  .kind ul li::before,.compare__list li::before,.chev li::before{ background:#8a8a8a !important; color:#8a8a8a !important; }
+  .result{ border-top:1px solid #1a1a1a !important; padding-top:8px !important; }
+  .point__ico{ border:1px solid #b4b4b4 !important; }
+
+  /* ── 타임라인 ── */
+  .track__i::before{ background:#1a1a1a !important; }
+  .track__i::after{ background:#c8c8c8 !important; }
+  .track__i{ flex:0 0 auto !important; padding-bottom:12px !important; }
+
+  /* ── 활용 툴 게이지 ── */
+  .tool__meter{ background:#e4e4e4 !important; height:6px !important; }
+  .tool__meter i{ background:#1a1a1a !important; width:var(--lv) !important; transition:none !important; }
+  .tools{ grid-template-columns:repeat(4,1fr) !important; }
+
+  /* ── AI 활용 ── */
+  .ai__disc{ border:1px solid #c8c8c8 !important; border-radius:50% !important; }
+  .ai__no{ color:#5a5a5a !important; }
+
+  /* ── 프로필 사진은 실사, 캐릭터는 숨김 ── */
+  .cover__photo--char{ opacity:0 !important; }
+  .cover__photo--real{ opacity:1 !important; }
+
+  /* ── 스크롤 등장 해제 ── */
+  .rise{ opacity:1 !important; transform:none !important; }
+
+  /* ── 캡처 : 축소해 통째로 싣는다 ── */
+  .mgmt__fig{ max-height:none !important; }
+  .mgmt,.proj__body,.ai{ align-items:start !important; }
+  .shot,.mgmt__fig,.doccard__shot{
+    width:fit-content !important; margin-inline:auto !important;
+    border:1px solid #c8c8c8 !important;
+  }
+  .shot img,.mgmt__fig img{
+    height:auto !important; max-height:88mm !important;
+    width:auto !important; max-width:100% !important; object-fit:contain !important;
+  }
+  .doccard__shot img{ height:auto !important; max-height:46mm !important; object-fit:contain !important; }
+
+  /* ── 페이지 분할 ── */
+  .card,.doccard,.crew__c,.tool,.ai__i,.track__i,.kind,.compare,.shot,.mgmt__fig,
+  .flow__desc,.point{ break-inside:avoid; }
+  .shead,.blk-h,.proj__head{ break-after:avoid; }
+
+  /* ── 스윔레인 : 이모지 무채색화 + 지면 폭 안으로 ── */
+  .swim__who span{ filter:grayscale(1) !important; }
+  .swim{ overflow:visible !important; }
+  .swim__grid{ min-width:0 !important; grid-template-columns:72px 1fr !important; gap:10px !important; }
+  .swim__lane{ flex-wrap:wrap !important; row-gap:6px !important; }
+  .swim__box{ font-size:9pt !important; padding:6px 9px !important; }
+  .arw{ flex:0 0 18px !important; }
+
+  /* ── 맺음말 · 푸터 ── */
+  .closing{ border-top:2px solid #1a1a1a !important; padding-block:22px !important; }
+  .closing h2{ font-size:16px !important; }
+  .foot{ border-top:1px solid #c8c8c8 !important; padding-block:10px !important; }
 }
 </style>
 </head>
@@ -1170,6 +1397,7 @@ ul{ list-style:none; padding:0; }
       <a href="#closing"><span class="n">06</span>맺음말</a>
     </div>
     <div class="nav__acts">
+      <button type="button" class="btn btn--primary-fill" data-live-open aria-haspopup="dialog"><span class="live-dot" aria-hidden="true"></span>바이브코딩 산출물 예시</button>
       <button type="button" class="btn btn--primary-weak" data-doc-open aria-haspopup="dialog">화면설계서</button>
       <a class="btn btn--primary-weak" href="portfolio.pdf" target="_blank" rel="noopener">PDF 내려받기</a>
       <a class="btn btn--primary-fill" href="../">지원서 페이지로</a>
@@ -1192,14 +1420,15 @@ ul{ list-style:none; padding:0; }
     </p>
     <div class="cover__acts">
       <a class="btn btn--light-fill" href="portfolio.pdf" target="_blank" rel="noopener">PDF 버전 내려받기</a>
+      <button type="button" class="btn btn--light-weak" data-live-open aria-haspopup="dialog"><span class="live-dot" aria-hidden="true"></span>바이브코딩 산출물 예시</button>
       <button type="button" class="btn btn--light-weak cover__acts--pc" data-doc-open aria-haspopup="dialog">화면설계서 보기</button>
       <a class="btn btn--light-weak" href="../">지원서 페이지로</a>
     </div>
     </div>
-    <figure class="cover__photo">
+    <button type="button" class="cover__photo" id="cover-photo" aria-pressed="false" aria-label="프로필 사진 전환">
       <img class="cover__photo--char" src="images/%EC%84%B8%ED%9B%88%20%EA%B7%B8%EB%A6%BC.jpg" alt="박세훈" width="1024" height="1024">
       <img class="cover__photo--real" src="../application/photo.jpg" alt="" aria-hidden="true" width="413" height="532">
-    </figure>
+    </button>
     </div>
     <div class="cover__meta">
       <span>경력 <b>4년 5개월</b></span>
@@ -1309,6 +1538,7 @@ ul{ list-style:none; padding:0; }
           <span class="tag tag--key">라이브 운영</span><span class="tag">쿠폰 동기화</span>
           <span class="tag">상태 설계</span><span class="tag">CMS 신규</span><span class="tag">연간 패스</span>
         </div>
+        <div class="proj__live"><button type="button" class="btn btn--primary-weak btn--sm" data-live-open data-live-tab="0" aria-haspopup="dialog"><span class="live-dot" aria-hidden="true"></span>공유오피스 대관 화면 보기</button></div>
       </div>
       <div class="proj__body">
         <figure class="shot">
@@ -1383,6 +1613,7 @@ ul{ list-style:none; padding:0; }
           <span class="tag tag--key">사업 관리</span><span class="tag">요구 명세</span>
           <span class="tag">대안 비교</span><span class="tag">데이터 설계</span>
         </div>
+        <div class="proj__live"><button type="button" class="btn btn--primary-weak btn--sm" data-live-open data-live-tab="1" aria-haspopup="dialog"><span class="live-dot" aria-hidden="true"></span>실시간 관람 현황 보기</button></div>
       </div>
       <div class="proj__body">
         <figure class="shot">
@@ -1812,6 +2043,30 @@ ul{ list-style:none; padding:0; }
   </div>
 </footer>
 
+<!-- ═══ 바이브코딩 산출물 모달 ═══ -->
+<div class="lvmodal" id="lvmodal" hidden role="dialog" aria-modal="true" aria-label="바이브코딩 산출물 예시">
+  <div class="lvmodal__scrim" data-lv-close></div>
+  <div class="lvmodal__panel">
+    <div class="lvmodal__bar">
+      <nav class="lvmodal__tabs" role="tablist" aria-label="바이브코딩 산출물 예시 선택">
+      <button type="button" class="lvtab" role="tab" aria-selected="true" data-src="demo/sfc-office.html" data-title="공유오피스 대관 신청" data-note="공유오피스는 다른 시설과 달리 <b>좌석을 먼저 고르고 날짜를 정하는 역순</b>입니다. 좌석마다 단기·장기 구분이 달라 선택 가능한 기간이 바뀌기 때문입니다. 좌석은 <b>사용 좌석 목록과 장기 좌석 목록의 교집합으로 3상태(단기·장기·미사용)</b>를 판정해 미사용 좌석은 아예 노출하지 않고, 좌석을 바꾸면 이미 고른 날짜를 초기화합니다.">서울영화센터<small>공유오피스 대관 신청</small></button>
+      <button type="button" class="lvtab" role="tab" aria-selected="false" data-src="demo/sfc-coupon.html" data-title="쿠폰 관리">서울영화센터<small>쿠폰 관리 CMS</small></button>
+      <button type="button" class="lvtab" role="tab" aria-selected="false" data-src="demo/buyeo-ticket.html" data-title="실시간 관람 현황" data-note="외부 키오스크 API를 30초 주기로 받아 회차별 발권 상황을 보여 줍니다. <b>진행 · 종료 · 매진 · 운영중지 4가지 상태</b>를 서버 응답으로만 판정하도록 정의해, 클라이언트 시계와 서버 시간이 어긋나도 표시가 흔들리지 않게 했습니다. 휴관일에는 섹션 자체를 안내 화면으로 교체합니다.">국립부여박물관<small>실시간 관람 현황</small></button>
+      <button type="button" class="lvtab" role="tab" aria-selected="false" data-src="demo/bike-cert.html" data-title="관리자 로그인 · 본인인증" data-note="관리자 로그인 앞단에 본인인증을 세워 인증 성공 시에만 세션이 열리도록 설계했습니다. <b>암호화 실패 5종을 각각 다른 안내로 분기</b>해, 재시도할지 관리자에게 문의할지 사용자가 판단할 수 있게 했습니다. 화면 안에서 정상 / 실패 상태를 전환해 볼 수 있습니다.">자전거행복나눔<small>관리자 로그인 · 본인인증</small></button>
+      </nav>
+      <button type="button" class="lvmodal__x" data-lv-close aria-label="닫기">&times;</button>
+    </div>
+    <div class="lvmodal__stage">
+      <iframe id="lv-frame" title="바이브코딩 산출물 예시" loading="lazy"></iframe>
+    </div>
+    <div class="lvmodal__foot">
+      <span>시연용 재현 화면 · 실제 서비스와 연결되지 않으며 데이터 전송·저장이 일어나지 않습니다.</span>
+      <button type="button" class="lvmodal__replay" id="lv-replay">설명 다시 보기</button>
+      <a id="lv-new" href="demo/sfc-office.html" target="_blank" rel="noopener">새 탭에서 열기 ↗</a>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ 문서 뷰어 모달 — 화면설계서 ═══ -->
 <div class="docmodal" id="docmodal" hidden role="dialog" aria-modal="true" aria-labelledby="dm-title">
   <div class="docmodal__scrim" data-dm-close></div>
@@ -1856,6 +2111,7 @@ ul{ list-style:none; padding:0; }
 <div class="fab" id="fab">
   <div class="fab__scrim" data-fab-close aria-hidden="true"></div>
   <div class="fab__sheet" id="fab-sheet" hidden>
+    <button type="button" class="fab__item" data-live-open aria-haspopup="dialog"><span class="fab__ico" aria-hidden="true">▶</span>바이브코딩 산출물 예시</button>
     <button type="button" class="fab__item" data-doc-open aria-haspopup="dialog"><span class="fab__ico" aria-hidden="true">▤</span>화면설계서</button>
     <a class="fab__item" href="portfolio.pdf" target="_blank" rel="noopener"><span class="fab__ico" aria-hidden="true">↓</span>PDF 내려받기</a>
     <a class="fab__item" href="../"><span class="fab__ico" aria-hidden="true">↗</span>지원서 페이지로</a>
@@ -2098,6 +2354,74 @@ ul{ list-style:none; padding:0; }
     });
     prevBtn.addEventListener('click', function(){ hideSwipeHint(); go(idx - step()); });
     nextBtn.addEventListener('click', function(){ hideSwipeHint(); go(idx + step()); });
+  }
+
+  // ── 바이브코딩 산출물 모달 ──
+  var lv = document.getElementById('lvmodal');
+  if (lv) {
+    var lvTabs  = [].slice.call(lv.querySelectorAll('.lvtab'));
+    var lvFrame = document.getElementById('lv-frame');
+    var lvNew   = document.getElementById('lv-new');
+    var lvOpener = null;
+
+    function lvSelect(i){
+      lvTabs.forEach(function(t, k){ t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+      var t = lvTabs[i];
+      if (lvFrame.getAttribute('src') !== t.dataset.src) lvFrame.setAttribute('src', t.dataset.src);
+      lvNew.href = t.dataset.src;
+    }
+    function lvOpen(i){
+      lvOpener = document.activeElement;
+      lv.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lvSelect(i || 0);
+      lv.querySelector('.lvmodal__x').focus();
+      document.addEventListener('keydown', lvKey);
+    }
+    function lvClose(){
+      lv.hidden = true;
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', lvKey);
+      if (lvOpener && lvOpener.focus) lvOpener.focus();
+    }
+    function lvKey(e){ if (e.key === 'Escape' || e.key === 'Esc') lvClose(); }
+
+    lvTabs.forEach(function(t, i){ t.addEventListener('click', function(){ lvSelect(i); }); });
+    document.querySelectorAll('[data-live-open]').forEach(function(b){
+      b.addEventListener('click', function(){ lvOpen(parseInt(b.dataset.liveTab || '0', 10)); });
+    });
+    lv.querySelectorAll('[data-lv-close]').forEach(function(b){ b.addEventListener('click', lvClose); });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+    document.getElementById('lv-replay').addEventListener('click', function(){
+      try{ lvFrame.contentWindow.postMessage('tut:restart', '*'); }catch(e){}
+    });
+  }
+
+  // ── 표지 프로필 : 캐릭터 <-> 실사 ──
+  var coverPhoto = document.getElementById('cover-photo');
+  if (coverPhoto) {
+    coverPhoto.addEventListener('click', function(){
+      var on = !coverPhoto.classList.contains('is-real');
+      coverPhoto.classList.toggle('is-real', on);
+      coverPhoto.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
   }
 
   // ── MO 플로팅 메뉴 ──
